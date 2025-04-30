@@ -38,8 +38,8 @@ logaf-website/
 │   └── team/
 └── docs/
    ├── checklist.md
-├── documentation.md
-└── template_registration.md
+   ├── documentation.md
+   └── template_registration.md
 ```
 
 ## Tecnologias Utilizadas
