@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Logaf - Soluções em Engenharia e Arquitetura">
+    <title>Logaf - Engenharia e Arquitetura</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/Logo-logaf.png" alt="Logaf Logo">
+                </a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">INÍCIO</a></li>
+                <li><a href="sobre.html">SOBRE NÓS</a></li>
+                <li><a href="projetos.html">PROJETOS</a></li>
+                <li><a href="eventos.html">EVENTOS</a></li>
+                <li><a href="index.html#contact">CONTATO</a></li>
+                <li class="social-links">
+                    <a href="https://www.facebook.com/logafmarcenaria/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/logafmarcenaria/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transformando ideias em realidade</h1>
+            <p>Projetos de marcenaria sob medida pensados nos mínimos detalhes.</p>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="services section-spacing">
+        <div class="section-title-container">
+            <h2>Nossos Serviços</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-building"></i>
+                <h3>Projetos Arquitetônicos</h3>
+                <p>Desenvolvimento de projetos residenciais e comerciais com excelência e inovação.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-drafting-compass"></i>
+                <h3>Projetos Estruturais</h3>
+                <p>Projetos estruturais seguros e eficientes para sua obra.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Gerenciamento de Obras</h3>
+                <p>Acompanhamento completo do seu projeto, do início ao fim.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Projetos em Destaque -->
+    <section class="featured-projects section-spacing">
+        <div class="section-title-container">
+            <h2>Projetos Realizados</h2>
+        </div>
+        <div class="projects-grid">
+            <!-- Projeto 1 -->
+            <div class="project-card">
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="assets/projects/reserva-golf/01.jpg" alt="Projeto 1 - Imagem 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/projects/reserva-golf/02.jpg" alt="Projeto 1 - Imagem 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/projects/reserva-golf/03.jpg" alt="Projeto 1 - Imagem 3">
+                        </div>
+                    </div>
+                    <button class="carousel-arrow carousel-prev">&lt;</button>
+                    <button class="carousel-arrow carousel-next">&gt;</button>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active"></span>
+                        <span class="carousel-dot"></span>
+                        <span class="carousel-dot"></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Condomínio Reserva Golf</h3>
+                    <p>Um apartamento de 400 m² no Condomínio Reserva Golf, recebeu o projeto arquitetônico de Duda Porto.</p>
+                    <a href="projetos.html?projeto=reserva-golf" class="project-link">Ver mais</a>
+                </div>
+            </div>
+
+            <!-- Projeto 2 -->
+            <div class="project-card">
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="assets/projects/golden-green/01.jpg" alt="Projeto 2 - Imagem 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/projects/golden-green/02.jpg" alt="Projeto 2 - Imagem 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/projects/golden-green/03.jpg" alt="Projeto 2 - Imagem 3">
+                        </div>
+                    </div>
+                    <button class="carousel-arrow carousel-prev">&lt;</button>
+                    <button class="carousel-arrow carousel-next">&gt;</button>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active"></span>
+                        <span class="carousel-dot"></span>
+                        <span class="carousel-dot"></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Condomínio Golden Green</h3>
+                    <p>Em parceria com arquiteto Duda Porto, este imóvel apresenta móveis construídos com laca fendi e laminado natural freijó.</p>
+                    <a href="projetos.html?projeto=golden-green" class="project-link">Ver mais</a>
+                </div>
+            </div>
+
+            <!-- Projeto 3 -->
+            <div class="project-card">
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="assets/projects/casa-teresopolis/01.jpg" alt="Projeto 3 - Imagem 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/projects/casa-teresopolis/02.jpg" alt="Projeto 3 - Imagem 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/projects/casa-teresopolis/03.jpg" alt="Projeto 3 - Imagem 3">
+                        </div>
+                    </div>
+                    <button class="carousel-arrow carousel-prev">&lt;</button>
+                    <button class="carousel-arrow carousel-next">&gt;</button>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active"></span>
+                        <span class="carousel-dot"></span>
+                        <span class="carousel-dot"></span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Casa Teresópolis</h3>
+                    <p>Localizada em um condomínio de alto padrão em Teresópolis, essa casa foi trabalhada com material Ipê Champagne.</p>
+                    <a href="projetos.html?projeto=casa-teresopolis" class="project-link">Ver mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Depoimentos -->
+    <section class="testimonials section-spacing">
+        <div class="section-title-container">
+            <h2>O que nossos clientes dizem</h2>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"A Logaf superou todas as nossas expectativas no projeto do nosso apartamento. A equipe foi extremamente profissional, atenciosa e entregou um resultado impecável. O projeto ficou exatamente como sonhávamos!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Maria Silva</h4>
+                                <p>Proprietária - Condomínio Reserva Golf</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Trabalhar com a Logaf foi uma experiência incrível. A capacidade técnica da equipe, aliada à criatividade e atenção aos detalhes, resultou em um projeto comercial que atende perfeitamente às nossas necessidades."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>João Santos</h4>
+                                <p>Diretor - Empresa XYZ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"O gerenciamento de obra da Logaf foi fundamental para o sucesso do nosso projeto industrial. A equipe demonstrou grande conhecimento técnico e eficiência em todas as etapas da construção."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Ana Oliveira</h4>
+                                <p>Gerente de Projetos - Indústria ABC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonials-nav">
+                <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="statistics">
+        <div class="stat-container">
+            <div class="stat-item">
+                <h3>+200</h3>
+                <p>Projetos Entregues</p>
+            </div>
+            <div class="stat-item">
+                <h3>+30</h3>
+                <p>Anos de Experiência</p>
+            </div>
+            <div class="stat-item">
+                <h3>+100</h3>
+                <p>Clientes Satisfeitos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="contact section-spacing">
+        <div class="section-title-container">
+            <h2>Entre em Contato</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="user_name" name="user_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="user_email" name="user_email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Enviar Mensagem</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Informações de Contato</h3>
+                <div class="contact-info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(21) 96415-3264</p>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:comercial@logaf.com.br">comercial@logaf.com.br</a></p>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Av. Alm. Júlio de Sá Bierrenbach, 65, Bloco 3, Sala 111<br>
+                    Universe Empresarial - Jacarepaguá - RJ</p>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-clock"></i>
+                    <p>Segunda a Sexta: 08:00 - 18:00</p>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/logafmarcenaria/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/logafmarcenaria/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.412655179575!2d-43.37212039023781!3d-22.97184837912265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd97f0a4de20b%3A0x488f9a0e7ef9bc06!2sUniverse%20Empresarial!5e0!3m2!1spt-BR!2sbr!4v1745950570341!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <img src="assets/Logo-logaf-sfundo.PNG" alt="Logaf Logo" class="footer-logo">
+                <p>Soluções em engenharia e arquitetura para seu projeto</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/logafmarcenaria/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/logafmarcenaria/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h3>ASSINE NOSSA NEWSLETTER</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Entre seu endereço de e-mail" required>
+                    <button type="submit">ASSINE</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Logaf. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/debug.js"></script>
+    <script src="js/testimonials.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html> 

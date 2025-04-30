@@ -1,0 +1,55 @@
+/* Estilos gerais para seções */
+.section-divider {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+    opacity: 0.3;
+}
+
+.section-spacing {
+    padding: 7rem 1rem;
+}
+
+.section-title-container {
+    position: relative;
+    text-align: center;
+}
+
+.section-title-container h2 {
+    display: inline-block;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.section-title-container h2::before,
+.section-title-container h2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+    opacity: 0.5;
+}
+
+.section-title-container h2::before {
+    left: -30px;
+}
+
+.section-title-container h2::after {
+    right: -30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .section-spacing {
+        padding: 5rem 1rem;
+    }
+
+    .section-title-container h2::before,
+    .section-title-container h2::after {
+        width: 30px;
+    }
+} 

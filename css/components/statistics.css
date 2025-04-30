@@ -1,0 +1,21 @@
+/* Statistics */
+.statistics {
+  padding: 5rem 1rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.stat-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+}
