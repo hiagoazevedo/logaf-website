@@ -2,17 +2,55 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
+    const header = document.querySelector('.header');
+    const heroContent = document.querySelector('.hero-content');
 
-    mobileMenuBtn.addEventListener('click', function() {
+    // Garante que o menu está fechado por padrão
+    navMenu.classList.remove('active');
+
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         navMenu.classList.toggle('active');
         this.classList.toggle('active');
+        // Adiciona ou remove a classe scrolled no header ao abrir/fechar menu no mobile
+        if (isMobile()) {
+            if (navMenu.classList.contains('active')) {
+                header.classList.add('scrolled');
+                if (heroContent) heroContent.style.display = 'none';
+            } else if (window.scrollY === 0) {
+                header.classList.remove('scrolled');
+                if (heroContent) heroContent.style.display = '';
+            } else {
+                if (heroContent) heroContent.style.display = '';
+            }
+        }
     });
 
-    // Close mobile menu when clicking outside
+    // Fecha o menu ao clicar em qualquer link do menu
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            if (isMobile() && window.scrollY === 0) {
+                header.classList.remove('scrolled');
+            }
+            if (heroContent) heroContent.style.display = '';
+        });
+    });
+
+    // Fecha o menu ao clicar fora dele
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.nav-container')) {
             navMenu.classList.remove('active');
             mobileMenuBtn.classList.remove('active');
+            if (isMobile() && window.scrollY === 0) {
+                header.classList.remove('scrolled');
+            }
+            if (heroContent) heroContent.style.display = '';
         }
     });
 
@@ -115,4 +153,49 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Header Scroll Effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0 && (!isMobile() || !navMenu.classList.contains('active'))) {
+            header.classList.remove('scrolled');
+            return;
+        }
+        header.classList.add('scrolled');
+        lastScroll = currentScroll;
+    });
+
+    // Hero Slider
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+    let isTransitioning = false;
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        const nextSlideIndex = (currentSlide + 1) % slides.length;
+        
+        // Prepara a próxima imagem
+        slides[nextSlideIndex].classList.add('next');
+        
+        // Inicia a transição
+        setTimeout(() => {
+            slides[currentSlide].classList.remove('active');
+            slides[nextSlideIndex].classList.remove('next');
+            slides[nextSlideIndex].classList.add('active');
+            currentSlide = nextSlideIndex;
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 1500);
+        }, 50);
+    }
+
+    // Inicializa o primeiro slide
+    slides[0].classList.add('active');
+
+    // Change slide every 5 seconds
+    setInterval(nextSlide, 5000);
 }); 
