@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     const header = document.querySelector('.header');
     const heroContent = document.querySelector('.hero-content');
+    const logoImg = document.querySelector('.logo img');
+    const logoBranca = 'assets/Logo-logaf-sfundo.PNG';
+    const logoPreta = 'assets/Logo-logaf-sfundo-preto.png';
 
     // Garante que o menu está fechado por padrão
     navMenu.classList.remove('active');
@@ -12,46 +15,66 @@ document.addEventListener('DOMContentLoaded', function() {
         return window.innerWidth <= 768;
     }
 
+    // Função para abrir o menu
+    function openMenu() {
+        navMenu.classList.add('active');
+        mobileMenuBtn.classList.add('active');
+        header.classList.remove('scrolled');
+        // Animação sequencial dos itens
+        navMenu.querySelectorAll('li').forEach((li, i) => {
+            li.style.transitionDelay = (0.08 * i + 0.1) + 's';
+        });
+    }
+    // Função para fechar o menu
+    function closeMenu() {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        // Remove delays para resetar animação após a transição
+        setTimeout(() => {
+            navMenu.querySelectorAll('li').forEach(li => {
+                li.style.transitionDelay = '';
+            });
+        }, 400); // tempo igual ao da transição do CSS
+    }
+
+    // Toggle menu ao clicar no hambúrguer
     mobileMenuBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        navMenu.classList.toggle('active');
-        this.classList.toggle('active');
-        // Adiciona ou remove a classe scrolled no header ao abrir/fechar menu no mobile
-        if (isMobile()) {
-            if (navMenu.classList.contains('active')) {
-                header.classList.add('scrolled');
-                if (heroContent) heroContent.style.display = 'none';
-            } else if (window.scrollY === 0) {
-                header.classList.remove('scrolled');
-                if (heroContent) heroContent.style.display = '';
-            } else {
-                if (heroContent) heroContent.style.display = '';
-            }
+        if (navMenu.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     });
 
-    // Fecha o menu ao clicar em qualquer link do menu
-    document.querySelectorAll('.nav-menu a').forEach(link => {
+    // Fecha menu ao clicar em qualquer link
+    navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            if (isMobile() && window.scrollY === 0) {
-                header.classList.remove('scrolled');
-            }
-            if (heroContent) heroContent.style.display = '';
+            closeMenu();
         });
     });
 
-    // Fecha o menu ao clicar fora dele
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.nav-container')) {
-            navMenu.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            if (isMobile() && window.scrollY === 0) {
-                header.classList.remove('scrolled');
-            }
-            if (heroContent) heroContent.style.display = '';
+    // Fecha menu ao clicar fora do overlay
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            closeMenu();
         }
+    });
+
+    // Efeito do header ao rolar
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 10 && !navMenu.classList.contains('active')) {
+            header.classList.add('scrolled');
+            if (logoImg) logoImg.src = logoPreta;
+        } else {
+            header.classList.remove('scrolled');
+            if (logoImg) logoImg.src = logoBranca;
+        }
+    });
+
+    // Garante que o menu fecha ao redimensionar
+    window.addEventListener('resize', function() {
+        closeMenu();
     });
 
     // Smooth scroll for anchor links
@@ -153,18 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    // Header Scroll Effect
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll <= 0 && (!isMobile() || !navMenu.classList.contains('active'))) {
-            header.classList.remove('scrolled');
-            return;
-        }
-        header.classList.add('scrolled');
-        lastScroll = currentScroll;
-    });
 
     // Hero Slider
     const slides = document.querySelectorAll('.hero-slide');
