@@ -198,4 +198,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Change slide every 5 seconds
     setInterval(nextSlide, 5000);
+
+    // Interatividade dos cards de serviço
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const icon = card.querySelector('i');
+            icon.style.transition = 'all 0.4s ease';
+            icon.style.color = '#555';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            const icon = card.querySelector('i');
+            icon.style.color = '#a3a3a3';
+        });
+    });
 }); 

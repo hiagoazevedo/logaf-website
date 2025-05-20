@@ -21,6 +21,8 @@
     display: inline-block;
     position: relative;
     padding: 0 2rem;
+    font-family: var(--font-montserrat);
+    font-weight: 300;
 }
 
 .section-title-container h2::before,
