@@ -65,7 +65,113 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Inicialização dos Carrosséis
+    // Inicialização do Carrossel de Projetos (Index)
+    const projectsCarousel = document.querySelector('.projects-carousel');
+    if (projectsCarousel) {
+        const track = projectsCarousel.querySelector('.projects-track');
+        const items = projectsCarousel.querySelectorAll('.project-item');
+        const prevBtn = projectsCarousel.querySelector('.projects-prev');
+        const nextBtn = projectsCarousel.querySelector('.projects-next');
+        
+        if (track && items.length > 0) {
+            let currentIndex = 0;
+            const itemsToShow = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
+            let maxIndex = Math.max(0, items.length - itemsToShow);
+            
+            function updateCarousel() {
+                const itemWidth = items[0].offsetWidth;
+                const gap = 5;
+                const translateX = currentIndex * (itemWidth + gap);
+                track.style.transform = `translateX(-${translateX}px)`;
+                
+                // Atualiza estado dos botões (apenas se existirem)
+                if (prevBtn) {
+                    prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                    prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+                }
+                if (nextBtn) {
+                    nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
+                    nextBtn.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
+                }
+            }
+            
+            function updateItemsToShow() {
+                const newItemsToShow = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
+                const newMaxIndex = Math.max(0, items.length - newItemsToShow);
+                
+                if (currentIndex > newMaxIndex) {
+                    currentIndex = newMaxIndex;
+                }
+                
+                // Atualiza maxIndex para a função updateCarousel
+                maxIndex = newMaxIndex;
+                updateCarousel();
+            }
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const itemsToShow = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
+                    const maxIndex = Math.max(0, items.length - itemsToShow);
+                    
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                        updateCarousel();
+                    }
+                });
+            }
+            
+            // Suporte para touch/swipe em dispositivos móveis
+            let startX = 0;
+            let isDragging = false;
+            
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+            
+            track.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > 50) { // Mínimo de 50px para considerar swipe
+                    if (diff > 0 && currentIndex < maxIndex) {
+                        // Swipe para esquerda - próximo
+                        currentIndex++;
+                        updateCarousel();
+                    } else if (diff < 0 && currentIndex > 0) {
+                        // Swipe para direita - anterior
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                }
+            });
+            
+            // Atualiza ao redimensionar a janela
+            window.addEventListener('resize', updateItemsToShow);
+            
+            // Inicialização
+            updateCarousel();
+        }
+    }
+
+    // Inicialização dos Carrosséis (Projetos.html)
     const carousels = document.querySelectorAll('.project-carousel');
     if (carousels.length > 0) {
         carousels.forEach(carousel => {

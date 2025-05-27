@@ -179,8 +179,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hero Slider
     const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.hero-indicator');
+    const prevBtn = document.querySelector('.hero-prev');
+    const nextBtn = document.querySelector('.hero-next');
     let currentSlide = 0;
     let isTransitioning = false;
+    let autoSlideInterval;
+
+    function updateSlider() {
+        // Remove active class from all slides and indicators
+        slides.forEach(slide => slide.classList.remove('active', 'next'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // Add active class to current slide and indicator
+        slides[currentSlide].classList.add('active');
+        indicators[currentSlide].classList.add('active');
+    }
 
     function nextSlide() {
         if (isTransitioning) return;
@@ -196,6 +210,11 @@ document.addEventListener('DOMContentLoaded', function() {
             slides[currentSlide].classList.remove('active');
             slides[nextSlideIndex].classList.remove('next');
             slides[nextSlideIndex].classList.add('active');
+            
+            // Atualiza indicadores
+            indicators[currentSlide].classList.remove('active');
+            indicators[nextSlideIndex].classList.add('active');
+            
             currentSlide = nextSlideIndex;
             
             setTimeout(() => {
@@ -204,23 +223,251 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 50);
     }
 
+    function prevSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        const prevSlideIndex = (currentSlide - 1 + slides.length) % slides.length;
+        
+        // Prepara a imagem anterior
+        slides[prevSlideIndex].classList.add('next');
+        
+        // Inicia a transição
+        setTimeout(() => {
+            slides[currentSlide].classList.remove('active');
+            slides[prevSlideIndex].classList.remove('next');
+            slides[prevSlideIndex].classList.add('active');
+            
+            // Atualiza indicadores
+            indicators[currentSlide].classList.remove('active');
+            indicators[prevSlideIndex].classList.add('active');
+            
+            currentSlide = prevSlideIndex;
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 1500);
+        }, 50);
+    }
+
+    function goToSlide(slideIndex) {
+        if (isTransitioning || slideIndex === currentSlide) return;
+        isTransitioning = true;
+
+        // Prepara o slide de destino
+        slides[slideIndex].classList.add('next');
+        
+        // Inicia a transição
+        setTimeout(() => {
+            slides[currentSlide].classList.remove('active');
+            slides[slideIndex].classList.remove('next');
+            slides[slideIndex].classList.add('active');
+            
+            // Atualiza indicadores
+            indicators[currentSlide].classList.remove('active');
+            indicators[slideIndex].classList.add('active');
+            
+            currentSlide = slideIndex;
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 1500);
+        }, 50);
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
     // Inicializa o primeiro slide
-    slides[0].classList.add('active');
-
-    // Change slide every 5 seconds
-    setInterval(nextSlide, 5000);
-
-    // Interatividade dos cards de serviço
-    document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            const icon = card.querySelector('i');
-            icon.style.transition = 'all 0.4s ease';
-            icon.style.color = '#555';
+    if (slides.length > 0) {
+        updateSlider();
+        
+        // Event listeners para os botões de navegação
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide(); // Reinicia o auto-slide após interação manual
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide(); // Reinicia o auto-slide após interação manual
+            });
+        }
+        
+        // Event listeners para os indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                stopAutoSlide();
+                goToSlide(index);
+                startAutoSlide(); // Reinicia o auto-slide após interação manual
+            });
         });
         
-        card.addEventListener('mouseleave', () => {
-            const icon = card.querySelector('i');
-            icon.style.color = '#a3a3a3';
+        // Inicia o auto-slide
+        startAutoSlide();
+        
+        // Pausa o auto-slide quando o mouse está sobre o hero
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', stopAutoSlide);
+            heroSection.addEventListener('mouseleave', startAutoSlide);
+        }
+        
+        // Suporte para navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            } else if (e.key === 'ArrowRight') {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            }
         });
-    });
+    }
+
+    // Services scroll detection for mobile
+    function initServicesScrollDetection() {
+        const serviceItems = document.querySelectorAll('.service-item');
+        
+        if (serviceItems.length === 0) return;
+        
+        function checkServiceInView() {
+            // Only run on mobile
+            if (window.innerWidth > 768) return;
+            
+            const viewportCenter = window.innerHeight / 2;
+            let activeItem = null;
+            let minDistance = Infinity;
+            
+            serviceItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const itemCenter = rect.top + rect.height / 2;
+                const distance = Math.abs(viewportCenter - itemCenter);
+                
+                // Remove active class from all items
+                item.classList.remove('active');
+                
+                // Find the item closest to viewport center
+                if (distance < minDistance && rect.top < viewportCenter && rect.bottom > viewportCenter) {
+                    minDistance = distance;
+                    activeItem = item;
+                }
+            });
+            
+            // Add active class to the closest item
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkServiceInView);
+        
+        // Check on resize
+        window.addEventListener('resize', checkServiceInView);
+        
+        // Initial check
+        checkServiceInView();
+    }
+    
+    // Initialize services scroll detection
+    initServicesScrollDetection();
+
+    // Projects Carousel (Index) - Auto-scroll infinito
+    function initProjectsCarousel() {
+        const track = document.querySelector('.projects-track');
+        const originalItems = document.querySelectorAll('.project-item');
+        
+        if (!track || originalItems.length === 0) {
+            return;
+        }
+        
+        // Duplica os itens para criar efeito infinito
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+        });
+        
+        const allItems = document.querySelectorAll('.project-item');
+        
+        let currentIndex = 0;
+        let autoScrollInterval;
+        const totalOriginalItems = originalItems.length;
+        
+        function moveCarousel() {
+            const itemWidth = allItems[0].offsetWidth;
+            const gap = 5;
+            const translateX = currentIndex * (itemWidth + gap);
+            
+            track.style.transition = 'transform 0.8s ease-in-out';
+            track.style.transform = `translateX(-${translateX}px)`;
+        }
+        
+        function nextSlide() {
+            currentIndex++;
+            
+            // Se chegou ao final dos itens originais, volta ao início sem transição
+            if (currentIndex >= totalOriginalItems) {
+                // Move para o final (itens duplicados)
+                moveCarousel();
+                
+                // Após a transição, volta ao início sem animação
+                setTimeout(() => {
+                    currentIndex = 0;
+                    track.style.transition = 'none';
+                    track.style.transform = 'translateX(0px)';
+                    
+                    // Força o reflow
+                    track.offsetHeight;
+                    
+                    // Reativa a transição para o próximo movimento
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.8s ease-in-out';
+                    }, 50);
+                }, 800);
+            } else {
+                moveCarousel();
+            }
+        }
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                nextSlide();
+            }, 3000);
+        }
+        
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+        
+        // Event listeners
+        const carousel = document.querySelector('.projects-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', stopAutoScroll);
+            carousel.addEventListener('mouseleave', startAutoScroll);
+        }
+        
+        // Inicialização
+        track.style.transform = 'translateX(0px)';
+        
+        // Inicia auto-scroll após 2 segundos
+        setTimeout(() => {
+            startAutoScroll();
+        }, 2000);
+    }
+    
+    // Inicializa o carrossel de projetos
+    initProjectsCarousel();
 }); 

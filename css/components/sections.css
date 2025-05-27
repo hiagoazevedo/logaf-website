@@ -44,14 +44,140 @@
     right: -30px;
 }
 
+/* Seção Quem Somos */
+.about-intro {
+    background-color: var(--tertiary-color);
+    padding: 80px 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.about-intro-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    gap: 300px;
+}
+
+.about-intro-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-intro-title {
+    flex: 0 0 220px;
+    align-items: flex-start;
+    text-align: left;
+    padding-right: 0;
+    justify-content: flex-start;
+}
+
+.about-intro-title h2 {
+    font-family: var(--font-tenor-sans);
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0;
+    line-height: 1.1;
+    padding-top: 20px;
+}
+
+.about-intro-text {
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 340px;
+    justify-content: flex-start;
+}
+
+.about-intro-text p {
+    font-family: var(--font-inter);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: left;
+    word-break: break-word;
+}
+
+.about-intro-text .divider {
+    width: 100%;
+    max-width: 350px;
+    height: 2px;
+    background-color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.about-link {
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.about-link:hover {
+    color: var(--green-hover);
+}
+
+.about-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.about-link:hover::after {
+    width: 100%;
+    background-color: var(--green-hover);
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .section-spacing {
         padding: 5rem 1rem;
     }
-
+    
     .section-title-container h2::before,
     .section-title-container h2::after {
         width: 30px;
     }
-} 
+
+    /* Seção Quem Somos */
+    .about-intro-content {
+        flex-direction: column;
+        gap: 32px;
+        padding: 0 1rem;
+    }
+    .about-intro-title, .about-intro-text {
+        flex: 0 0 120px;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        max-width: 100%;
+    }
+    .about-intro-title h2 {
+        font-size: 2.2rem;
+    }
+    .about-intro-text .divider {
+        max-width: 200px;
+        margin: 1rem auto;
+    }
+    .about-intro-text p {
+        font-size: 1rem;
+    }
+}
