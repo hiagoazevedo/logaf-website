@@ -102,29 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Animate statistics when in viewport
-    const stats = document.querySelectorAll('.stat-item h3');
-    const animateStats = () => {
-        stats.forEach(stat => {
-            const rect = stat.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                stat.style.opacity = '1';
-                stat.style.transform = 'translateY(0)';
-            }
-        });
-    };
 
-    // Initial styles for stats
-    stats.forEach(stat => {
-        stat.style.opacity = '0';
-        stat.style.transform = 'translateY(20px)';
-        stat.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-
-    // Check stats on scroll
-    window.addEventListener('scroll', animateStats);
-    // Check stats on load
-    animateStats();
 
     // Rolagem suave para links internos na página inicial
     if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
@@ -385,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize services scroll detection
     initServicesScrollDetection();
 
-    // Projects Carousel (Index) - Auto-scroll infinito
+    // Projects Carousel (Index) - Rolagem contínua e suave
     function initProjectsCarousel() {
         const track = document.querySelector('.projects-track');
         const originalItems = document.querySelectorAll('.project-item');
@@ -394,78 +372,32 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Duplica os itens para criar efeito infinito
-        originalItems.forEach(item => {
-            const clone = item.cloneNode(true);
-            track.appendChild(clone);
-        });
-        
-        const allItems = document.querySelectorAll('.project-item');
-        
-        let currentIndex = 0;
-        let autoScrollInterval;
-        const totalOriginalItems = originalItems.length;
-        
-        function moveCarousel() {
-            const itemWidth = allItems[0].offsetWidth;
-            const gap = 5;
-            const translateX = currentIndex * (itemWidth + gap);
-            
-            track.style.transition = 'transform 0.8s ease-in-out';
-            track.style.transform = `translateX(-${translateX}px)`;
+        // Duplica os itens múltiplas vezes para criar efeito infinito suave
+        const duplicateCount = 3; // Duplica 3 vezes para garantir fluidez
+        for (let i = 0; i < duplicateCount; i++) {
+            originalItems.forEach(item => {
+                const clone = item.cloneNode(true);
+                track.appendChild(clone);
+            });
         }
         
-        function nextSlide() {
-            currentIndex++;
-            
-            // Se chegou ao final dos itens originais, volta ao início sem transição
-            if (currentIndex >= totalOriginalItems) {
-                // Move para o final (itens duplicados)
-                moveCarousel();
-                
-                // Após a transição, volta ao início sem animação
-                setTimeout(() => {
-                    currentIndex = 0;
-                    track.style.transition = 'none';
-                    track.style.transform = 'translateX(0px)';
-                    
-                    // Força o reflow
-                    track.offsetHeight;
-                    
-                    // Reativa a transição para o próximo movimento
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.8s ease-in-out';
-                    }, 50);
-                }, 800);
-            } else {
-                moveCarousel();
-            }
+        // Calcula a largura total dos itens originais
+        const itemWidth = originalItems[0].offsetWidth;
+        const gap = 5;
+        const totalOriginalWidth = originalItems.length * (itemWidth + gap);
+        
+        // Aplica animação CSS contínua (velocidade ajustada para ser suave)
+        track.style.animation = `scrollProjects ${totalOriginalWidth / 220}s linear infinite`;
+        
+        // Função para recalcular a animação quando a janela é redimensionada
+        function updateAnimation() {
+            const newItemWidth = originalItems[0].offsetWidth;
+            const newTotalWidth = originalItems.length * (newItemWidth + gap);
+            track.style.animation = `scrollProjects ${newTotalWidth / 220}s linear infinite`;
         }
         
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                nextSlide();
-            }, 3000);
-        }
-        
-        function stopAutoScroll() {
-            clearInterval(autoScrollInterval);
-        }
-        
-        // Event listeners
-        const carousel = document.querySelector('.projects-carousel');
-        if (carousel) {
-            carousel.addEventListener('mouseenter', stopAutoScroll);
-            carousel.addEventListener('mouseleave', startAutoScroll);
-        }
-        
-        // Inicialização
-        track.style.transform = 'translateX(0px)';
-        
-        // Inicia auto-scroll após 2 segundos
-        setTimeout(() => {
-            startAutoScroll();
-        }, 2000);
+        // Atualiza a animação quando a janela é redimensionada
+        window.addEventListener('resize', updateAnimation);
     }
     
     // Inicializa o carrossel de projetos

@@ -212,6 +212,16 @@ Media Queries (compartilhadas)
     height: 90%;
 }
 
+/* Animação de rolagem contínua */
+@keyframes scrollProjects {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%); /* Move exatamente 1/3 do total (1 conjunto completo dos itens originais) */
+    }
+}
+
 .project-item {
     flex: 0 0 33.333%;
     height: 100%;

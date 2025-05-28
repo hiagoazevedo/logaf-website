@@ -11,8 +11,6 @@
 @import url('components/sections.css');
 @import url('components/services.css');
 @import url('components/index-projects.css');
-@import url('components/testimonials.css');
-@import url('components/statistics.css');
 @import url('components/footer.css');
 @import url('components/contact.css');
 
@@ -26,6 +24,7 @@
     --secondary-color: #445948;
     --tertiary-color: #3b3939;
     --light-gray: #e8e8e8;
+    --gray-sobre: #a29f9f;
     --white: #FFFFFF;
     --gray: #f5f5f5;
     --gray-100: #f8f9fa;
