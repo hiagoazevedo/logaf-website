@@ -7,8 +7,6 @@
     <title>Projetos - Logaf</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Adicionar Lightbox CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
 </head>
 <body>
     <!-- Header -->
@@ -39,216 +37,93 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <section class="projects-hero">
-            <h1>PROJETOS</h1>
-        </section>
-
-        <!-- Filtros -->
-        <section class="projects-filters">
+    <main class="main-content-projects">
+        <section class="projects-filters-minimal">
             <div class="container">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="residencial">Residencial</button>
-                    <button class="filter-btn" data-filter="comercial">Comercial</button>
-                    <button class="filter-btn" data-filter="industrial">Industrial</button>
+                <div class="filter-header">
+                    <div class="architects-list">
+                        <span class="filter-label">DUDA PORTO</span>
+                        <span class="filter-separator">|</span>
+                        <span class="filter-label">PAOLA RIBEIRO</span>
+                        <span class="filter-separator">|</span>
+                        <span class="filter-label">MAS ARQUITETURA</span>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Projeto Principal -->
-        <section class="project-detail" data-project-id="reserva-golf" data-category="residencial">
-            <div class="container">
-                <h2>Condomínio Reserva Golf</h2>
-                <div class="project-info-grid">
-                    <div class="project-description">
-                        <p>Um apartamento de 400 m² no Condomínio Reserva Golf, um dos mais nobres da Barra da Tijuca, recebeu o projeto arquitetônico de Duda Porto com muita elegância. O material predominante é o laminado natural freijó, além de lacas coloridas nos quartos infantis e laca preto proporcionando sofisticação ao escritório. Outro destaque é o uso de material ripado proporcionando modernidade e aconchego nos ambientes.</p>
-                        <div class="project-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Área</span>
-                                <span class="spec-value">400 m²</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Localização</span>
-                                <span class="spec-value">Barra da Tijuca, RJ</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Ano</span>
-                                <span class="spec-value">2024</span>
-                            </div>
+                <div class="filter-dropdown">
+                    <span class="filter-text">Filtrar por:</span>
+                    <div class="dropdown-container">
+                        <button class="dropdown-btn" id="dropdown-btn">
+                            <span class="dropdown-text">DUDA PORTO</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <div class="dropdown-item active" data-filter="all">TODOS OS ARQUITETOS</div>
+                            <div class="dropdown-item" data-filter="duda-porto">DUDA PORTO</div>
+                            <div class="dropdown-item" data-filter="paola-ribeiro">PAOLA RIBEIRO</div>
+                            <div class="dropdown-item" data-filter="mas-arquitetura">MAS ARQUITETURA</div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Galeria de Imagens -->
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <a href="assets/projects/reserva-golf/01.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/01.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/reserva-golf/02.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/02.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/reserva-golf/03.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/03.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/reserva-golf/04.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/04.jpg" alt="Sala intima">
-                        </a>
-                        <a href="assets/projects/reserva-golf/05.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/05.jpg" alt="Quarto menina">
-                        </a>
-                        <a href="assets/projects/reserva-golf/06.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/06.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/reserva-golf/07.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/07.jpg" alt="Quarto do casal">
-                        </a>
-                        <a href="assets/projects/reserva-golf/08.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/08.jpg" alt="Quarto do casal">
-                        </a>
-                        <a href="assets/projects/reserva-golf/09.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/09.jpg" alt="Quarto do casal">
-                        </a>
-                        <a href="assets/projects/reserva-golf/10.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/10.jpg" alt="Quarto do casal">
-                        </a>
-                        <a href="assets/projects/reserva-golf/11.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/11.jpg" alt="Escritório">
-                        </a>
-                        <a href="assets/projects/reserva-golf/12.jpg" data-fancybox="reserva-golf" class="gallery-item">
-                            <img src="assets/projects/reserva-golf/12.jpg" alt="Escritório">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="project-detail" data-project-id="golden-green" data-category="residencial">
-            <div class="container">
-                <h2>Condomínio Golden Green</h2>
-                <div class="project-info-grid">
-                    <div class="project-description">
-                        <p>Em parceria com arquiteto Duda Porto, este imóvel apresenta móveis construídos com laca fendi, laminado natural freijó e um painel brise no hall social, deixando o ambiente ainda mais acolhedor. Localizado no Golden Green, na Barra da Tijuca, o apartamento possui uma copa toda em laca preta, onde é servido o café da manhã e também é o espaço em que o casal recebe seus amigos, um dos ambientes preferidos dos moradores.</p>
-                        <div class="project-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Área</span>
-                                <span class="spec-value">400 m²</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Localização</span>
-                                <span class="spec-value">Barra da Tijuca, RJ</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Ano</span>
-                                <span class="spec-value">2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Galeria de Imagens -->
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <a href="assets/projects/golden-green/01.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/01.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/golden-green/02.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/02.jpg" alt="Sala de jantar">
-                        </a>
-                        <a href="assets/projects/golden-green/03.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/03.jpg" alt="Home theater">
-                        </a>
-                        <a href="assets/projects/golden-green/04.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/04.jpg" alt="Escritório">
-                        </a>
-                        <a href="assets/projects/golden-green/05.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/05.jpg" alt="Quarto">
-                        </a>
-                        <a href="assets/projects/golden-green/06.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/06.jpg" alt="Banheiro">
-                        </a>
-                        <a href="assets/projects/golden-green/07.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/07.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/golden-green/08.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/08.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/golden-green/09.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/09.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/golden-green/10.jpg" data-fancybox="golden-green" class="gallery-item">
-                            <img src="assets/projects/golden-green/10.jpg" alt="Sala de estar">
-                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="project-detail" data-project-id="casa-teresopolis" data-category="residencial">
+        <section class="projects-list-minimal" id="projects-list">
             <div class="container">
-                <h2>Casa Teresópolis</h2>
-                <div class="project-info-grid">
-                    <div class="project-description">
-                        <p>Localizada em um condomínio de alto padrão em Teresópolis, essa casa foi trabalhada com material Ipê Champagne, Laminado Cumaru e madeiras de demolição na cozinha gourmet. Com projeto da Mas Arquitetura, executado por Cristina Afonso, os quartos infantis e banheiros receberam lacas brancas e diferentes tonalidades de verde.</p>
-                        <div class="project-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Área</span>
-                                <span class="spec-value">400 m²</span>
+                <div class="projects-container">
+                    <!-- Projeto 1: Reserva Golf -->
+                    <div class="project-item-minimal" data-architect="duda-porto" data-project-id="reserva-golf">
+                        <div class="project-image-wide">
+                            <img src="assets/projects/reserva-golf/01.jpg" alt="Condomínio Reserva Golf">
+                            <div class="project-overlay-text">
+                                <h3 class="project-title-overlay">Ipanema</h3>
+                                <p class="project-architect-overlay">DUDA PORTO</p>
                             </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Localização</span>
-                                <span class="spec-value">Teresópolis, RJ</span>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2: Golden Green -->
+                    <div class="project-item-minimal" data-architect="duda-porto" data-project-id="golden-green">
+                        <div class="project-image-wide">
+                            <img src="assets/projects/golden-green/01.jpg" alt="Condomínio Golden Green">
+                            <div class="project-overlay-text">
+                                <h3 class="project-title-overlay">Condomínio Golden Green</h3>
+                                <p class="project-architect-overlay">DUDA PORTO</p>
                             </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Ano</span>
-                                <span class="spec-value">2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3: Casa Teresópolis -->
+                    <div class="project-item-minimal" data-architect="mas-arquitetura" data-project-id="casa-teresopolis">
+                        <div class="project-image-wide">
+                            <img src="assets/projects/casa-teresopolis/01.jpg" alt="Casa Teresópolis">
+                            <div class="project-overlay-text">
+                                <h3 class="project-title-overlay">Casa Teresópolis</h3>
+                                <p class="project-architect-overlay">MAS ARQUITETURA</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Galeria de Imagens -->
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <a href="assets/projects/casa-teresopolis/01.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/01.jpg" alt="Área de lazer">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/02.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/02.jpg" alt="Área gourmet">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/03.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/03.jpg" alt="Área gourmet">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/04.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/04.jpg" alt="Área gourmet">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/05.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/05.jpg" alt="Área gourmet">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/06.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/06.jpg" alt="Área gourmet">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/07.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/07.jpg" alt="Sala de estar">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/08.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/08.jpg" alt="Banheiro">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/09.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/09.jpg" alt="Quarto casal">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/10.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/10.jpg" alt="Quarto visita">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/11.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/11.jpg" alt="Quarto visita">
-                        </a>
-                        <a href="assets/projects/casa-teresopolis/12.jpg" data-fancybox="casa-teresopolis" class="gallery-item">
-                            <img src="assets/projects/casa-teresopolis/12.jpg" alt="Cozinha">
-                        </a>
+    
+        <section class="project-detail-view" id="project-detail-view" style="display: none;">
+            <div class="container">
+                <button class="back-btn" id="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    VOLTAR AOS PROJETOS
+                </button>
+                
+                <div class="project-header">
+                    <h2 id="project-title"></h2>
+                    <div class="project-meta-minimal">
+                        <span id="project-architect-detail"></span>
+                        <span id="project-location-detail"></span>
                     </div>
                 </div>
+
+                <div class="project-description-minimal" id="project-description"></div>
+                <div class="project-gallery-dynamic" id="project-gallery-detail"></div>
             </div>
         </section>
     </main>
@@ -280,12 +155,5 @@
 
     <script src="js/main.js"></script>
     <script src="js/projects.js"></script>
-    <!-- Adicionar Lightbox JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        Fancybox.bind("[data-fancybox]", {
-            // Opções personalizadas aqui
-        });
-    </script>
 </body>
 </html> 

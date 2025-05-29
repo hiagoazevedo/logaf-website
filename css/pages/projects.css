@@ -1,204 +1,557 @@
-/* ==========================================
-   Hero Section
-   ========================================== */
-.projects-hero {
-    background-color: var(--gray);
-    padding: 8rem 2rem 2rem;
-    text-align: center;
+body:has(.main-content-projects) {
+    background-color: var(--light-gray);
 }
 
-.projects-hero h1 {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    color: var(--text-color);
-    font-size: 2rem;
-    text-align: start;
-}
-
-/* ==========================================
-   Filtros
-   ========================================== */
-.projects-filters {
-    background-color: var(--background-color);
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--gray);
-}
-
-.filter-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 0.8rem 1.5rem;
-    border: 1px solid var(--dark-gray);
-    background: transparent;
-    color: var(--dark-gray);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background-color: var(--dark-gray);
-    color: white;
-}
-
-/* ==========================================
-   Projeto Detalhado
-   ========================================== */
-.project-detail {
-    padding: 4rem 0;
-    background-color: var(--background-color);
-}
-
+/* LAYOUT BASE */
 .container {
-    max-width: 1200px;
+    width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
+    box-sizing: border-box;
 }
 
-.project-detail h2 {
-    font-size: 2.5rem;
-    color: var(--dark-gray);
-    margin-bottom: 2rem;
-    font-weight: 500;
-    padding-left: 10.5rem;
+.main-content-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: var(--light-gray);
+    box-sizing: border-box;
 }
 
-.project-info-grid {
+/* FILTROS */
+
+.projects-filters-minimal {
+    padding: 6rem 0 2rem;
+}
+
+.filter-header {
+    text-align: center;
     margin-bottom: 3rem;
 }
 
-.project-description {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.project-description p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-color);
+.architects-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     margin-bottom: 2rem;
 }
 
-.project-specs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-    padding: 2rem;
-    background-color: var(--gray);
-    border-radius: 8px;
-}
-
-.spec-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.spec-label {
+.filter-label {
+    font-family: var(--font-inter);
     font-size: 0.9rem;
-    color: var(--dark-gray);
+    font-weight: 400;
+    color: var(--text-color-light);
+    letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+.filter-separator {
+    color: var(--text-color-light);
+    font-weight: 300;
+}
+
+.filter-dropdown {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.filter-text {
+    font-family: var(--font-inter);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--primary-color);
     letter-spacing: 1px;
 }
 
-.spec-value {
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    font-weight: 500;
-}
-
-/* ==========================================
-   Galeria de Imagens
-   ========================================== */
-.project-gallery {
-    margin-top: 4rem;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.8rem;
-}
-
-.gallery-item {
+.dropdown-container {
     position: relative;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    border-radius: 8px;
+}
+
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-inter);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+}
+
+.dropdown-icon {
+    font-size: 0.7rem;
+    color: var(--primary-color);
     transition: transform 0.3s ease;
-    max-width: 250px;
-    margin: 0 auto;
 }
 
-.gallery-item:hover {
-    transform: scale(1.02);
+.dropdown-btn.active .dropdown-icon {
+    transform: rotate(180deg);
 }
 
-.gallery-item img {
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 0.8rem 1rem;
+    font-family: var(--font-inter);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-color-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+    background-color: var(--light-gray);
+    color: var(--text-color-light);
+}
+
+/* LISTA DE PROJETOS */
+.projects-list-minimal {
+    padding: 2rem 0 4rem;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 100%;
+}
+
+.project-item-minimal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.project-item-minimal.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-item-minimal.reveal-out {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.project-item-minimal.hidden {
+    display: none;
+}
+
+.project-item-minimal.show {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+.project-item-minimal:hover,
+.project-item-minimal.reveal:hover {
+    transform: translateY(-2px);
+}
+
+.project-image-wide {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.project-image-wide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.1);
+.project-item-minimal:hover .project-image-wide img {
+    transform: scale(1.02);
 }
 
-/* ==========================================
-   Media Queries
-   ========================================== */
-@media (max-width: 768px) {
-    .projects-hero h1 {
-        font-size: 2.5rem;
-        padding: 0;
-        text-align: center;
-    }
-
-    .project-detail h2 {
-        font-size: 2rem;
-        padding: 0;
-    }
-
-    .project-description p {
-        font-size: 1rem;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .filter-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .filter-btn {
-        width: 100%;
-        max-width: 300px;
-    }
+.project-overlay-text {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 2;
 }
 
-/* ==========================================
-   Animações
-   ========================================== */
-@keyframes fadeIn {
+.project-title-overlay {
+    font-family: var(--font-inter);
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+}
+
+.project-architect-overlay {
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--white);
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* PÁGINA INDIVIDUAL DO PROJETO */
+.project-detail-view {
+    padding: 2rem 0;
+}
+
+.project-header {
+    margin-bottom: 4rem;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.back-btn {
+    background: none;
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-inter);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    transform: translateX(-3px);
+}
+
+.back-btn i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover i {
+    transform: translateX(-2px);
+}
+
+.project-header h2 {
+    font-family: var(--font-inter);
+    font-size: 3.5rem;
+    color: var(--dark-gray);
+    margin-bottom: 1rem;
+    font-weight: 300;
+    letter-spacing: -1px;
+}
+
+.project-meta-minimal {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.project-meta-minimal span {
+    font-family: var(--font-inter);
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.project-description-minimal {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.project-description-minimal p {
+    font-family: var(--font-inter);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+/* GALERIA DINÂMICA */
+.project-gallery-dynamic {
+    margin-top: 4rem;
+    padding: 0 2rem;
+}
+
+.gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+    gap: 0.8rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gallery-item-dynamic {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item-dynamic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Grid patterns otimizados */
+.gallery-item-dynamic:nth-child(1) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(2) { grid-column: span 3; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(3) { grid-column: span 3; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(4) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(5) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(6) { grid-column: span 3; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(7) { grid-column: span 3; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(8) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(9) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(10) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(11) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(12) { grid-column: span 6; grid-row: span 2; }
+.gallery-item-dynamic:nth-child(n+13) { grid-column: span 6; grid-row: span 2; }
+
+
+/* ANIMAÇÕES */
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* MEDIA QUERIES - TABLET */
+
+@media (max-width: 768px) {
+    /* LAYOUT BASE */
+    .container {
+        padding: 2rem 1rem 0;
+    }
+
+    .main-content-projects {
+        gap: 2rem;
+    }
+    
+    /* FILTROS */
+    .projects-filters-minimal {
+        padding: 4rem 0 0;
+    }
+
+    .architects-list {
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-label {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .filter-dropdown {
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    /* LISTA DE PROJETOS */
+    .projects-container {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .project-image-wide {
+        height: 250px;
+    }
+
+    .project-title-overlay {
+        font-size: 2rem;
+    }
+
+    .project-architect-overlay {
+        font-size: 0.8rem;
+    }
+
+    .project-overlay-text {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+
+    /* PÁGINA INDIVIDUAL DO PROJETO */
+    .back-btn {
+        position: relative;
+        top: auto;
+        left: 2%;
+        margin-bottom: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .project-meta-minimal {
+        gap: 1rem;
+    }
+    
+}
+/* MEDIA QUERIES - MOBILE */
+@media (max-width: 480px) {
+    /* LAYOUT BASE */
+    .container {
+        padding: 1rem 0.5rem 0;
+    }
+
+    .main-content-projects {
+        gap: 1.5rem;
+    }
+
+    /* FILTROS */
+    .projects-filters-minimal {
+        padding: 4.5rem 0 1.5rem;   
+    }
+
+    .architects-list {
+        gap: 0.8rem;
+        flex-wrap: nowrap;
+        padding: 0 0.5rem;
+    }
+
+    .filter-label {
+        font-size: 0.7rem;
+        flex-shrink: 0;
+    }
+
+    .filter-separator {
+        flex-shrink: 0;
+    }
+
+    .dropdown-btn {
+        font-size: 0.8rem;
+    }
+
+    .projects-list-minimal {
+        padding: 1rem 0 3rem;
+    }
+
+    /* LISTA DE PROJETOS */
+    .projects-container {
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .project-image-wide {
+        height: 200px;
+    }
+
+    .project-title-overlay {
+        font-size: 1.5rem;
+    }
+
+    .project-architect-overlay {
+        font-size: 0.7rem;
+    }
+
+    .project-overlay-text {
+        bottom: 1rem;
+        left: 1rem;
+    }
+    /* DROPDOWN MENU */
+    .dropdown-menu {
+        min-width: 180px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .dropdown-menu.show {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* Scroll reveal no mobile */
+    .project-item-minimal {
+        transform: translateY(40px);
+    }
+
+    .project-item-minimal.reveal-out {
+        transform: translateY(-20px);
+    }
+
+    /* Página individual do projeto */
+    .project-header h2 {
+        font-size: 2rem;
+    }
+
+    .project-meta-minimal {
+        gap: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-description-minimal {
+        padding: 0 1rem;
+    }
+
+    /* Galeria dinâmica mobile */
+    .project-gallery-dynamic {
+        padding: 0 0.5rem;
+    }
+    
+    .gallery-masonry {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 150px;
+        gap: 0.5rem;
+    }
+
+    .gallery-item-dynamic:nth-child(1) { grid-column: span 4; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(2) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(3) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(4) { grid-column: span 4; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(5) { grid-column: span 4; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(6) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(7) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item-dynamic:nth-child(n+8) { grid-column: span 4; grid-row: span 2; }
 }
