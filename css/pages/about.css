@@ -198,8 +198,9 @@
 .services-title {
   font-family: var(--font-tenor-sans);
   font-size: 2.5rem;
-  color: var(--white);
-  margin: 0;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  padding-top: 2rem;
   text-transform: none;
 }
 

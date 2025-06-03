@@ -8,27 +8,58 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoBranca = 'assets/Logo-logaf-sfundo.PNG';
     const logoPreta = 'assets/Logo-logaf-sfundo-preto.png';
 
+    // Variável para controlar o estado do scroll
+    let isScrolled = false;
+
     // Garante que o menu está fechado por padrão
     navMenu.classList.remove('active');
+    
+    // Verifica o estado inicial do scroll
+    checkScrollState();
 
     function isMobile() {
         return window.innerWidth <= 768;
+    }
+
+    // Função para verificar e aplicar o estado scrolled
+    function checkScrollState() {
+        const scrollY = window.scrollY;
+        
+        if (scrollY > 50) {
+            // Estado: header branco, logo preto, menu hambúrguer preto
+            isScrolled = true;
+            header.classList.add('scrolled');
+            if (logoImg) logoImg.src = logoPreta;
+        } else {
+            // Estado: header transparente, logo branco, menu hambúrguer branco
+            isScrolled = false;
+            header.classList.remove('scrolled');
+            if (logoImg) logoImg.src = logoBranca;
+        }
     }
 
     // Função para abrir o menu
     function openMenu() {
         navMenu.classList.add('active');
         mobileMenuBtn.classList.add('active');
+        // Remove temporariamente a classe scrolled quando o menu está aberto
         header.classList.remove('scrolled');
+        // Força o logo branco quando o menu está aberto
+        if (logoImg) logoImg.src = logoBranca;
         // Animação sequencial dos itens
         navMenu.querySelectorAll('li').forEach((li, i) => {
             li.style.transitionDelay = (0.08 * i + 0.1) + 's';
         });
     }
+    
     // Função para fechar o menu
     function closeMenu() {
         navMenu.classList.remove('active');
         mobileMenuBtn.classList.remove('active');
+        
+        // Aplica imediatamente o estado correto baseado na posição do scroll
+        checkScrollState();
+        
         // Remove delays para resetar animação após a transição
         setTimeout(() => {
             navMenu.querySelectorAll('li').forEach(li => {
@@ -63,12 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Efeito do header ao rolar
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 10 && !navMenu.classList.contains('active')) {
-            header.classList.add('scrolled');
-            if (logoImg) logoImg.src = logoPreta;
-        } else {
-            header.classList.remove('scrolled');
-            if (logoImg) logoImg.src = logoBranca;
+        // Só aplica o efeito se o menu não estiver aberto
+        if (!navMenu.classList.contains('active')) {
+            checkScrollState();
         }
     });
 
@@ -102,8 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
-
     // Rolagem suave para links internos na página inicial
     if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
         // Função para rolagem suave
@@ -119,13 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Função para fechar o menu móvel
         function closeMobileMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (navMenu && mobileMenuBtn) {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
-            }
+            closeMenu(); // Usa a função principal que já aplica o estado correto
         }
 
         // Adiciona eventos para links de navegação
