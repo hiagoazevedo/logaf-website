@@ -1,68 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // UTILITY FUNCTIONS FOR PERFORMANCE
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     // Dados dos projetos
     const projectsData = {
-        'reserva-golf': {
-            title: 'Ipanema',
+        'casa-o-bom': {
+            title: 'Casa O Bom',
             architect: 'Duda Porto',
-            location: 'Barra da Tijuca, RJ',
+            location: 'Rio de Janeiro, RJ',
             area: '400 m²',
             year: '2024',
-            description: 'Um apartamento de 400 m² no Condomínio Reserva Golf, um dos mais nobres da Barra da Tijuca, recebeu o projeto arquitetônico de Duda Porto com muita elegância. O material predominante é o laminado natural freijó, além de lacas coloridas nos quartos infantis e laca preto proporcionando sofisticação ao escritório. Outro destaque é o uso de material ripado proporcionando modernidade e aconchego nos ambientes.',
+            description: 'Projeto residencial desenvolvido pela arquiteta Duda Porto, apresentando soluções inovadoras em marcenaria e design de interiores. O projeto combina funcionalidade e estética, criando ambientes únicos e acolhedores com acabamentos de alta qualidade.',
             images: [
-                { src: 'assets/projects/reserva-golf/01.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/reserva-golf/02.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/reserva-golf/03.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/reserva-golf/04.jpg', alt: 'Sala íntima' },
-                { src: 'assets/projects/reserva-golf/05.jpg', alt: 'Quarto menina' },
-                { src: 'assets/projects/reserva-golf/06.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/reserva-golf/07.jpg', alt: 'Quarto do casal' },
-                { src: 'assets/projects/reserva-golf/08.jpg', alt: 'Quarto do casal' },
-                { src: 'assets/projects/reserva-golf/09.jpg', alt: 'Quarto do casal' },
-                { src: 'assets/projects/reserva-golf/10.jpg', alt: 'Quarto do casal' },
-                { src: 'assets/projects/reserva-golf/11.jpg', alt: 'Escritório' },
-                { src: 'assets/projects/reserva-golf/12.jpg', alt: 'Escritório' }
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/01.webp', alt: 'Vista geral' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/02.webp', alt: 'Sala de estar' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/03.webp', alt: 'Cozinha' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/04.webp', alt: 'Quarto principal' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/05.webp', alt: 'Banheiro' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/06.webp', alt: 'Área de lazer' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/07.webp', alt: 'Escritório' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/08.webp', alt: 'Sala de jantar' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/09.webp', alt: 'Varanda' },
+                { src: 'assets/optimized/projetos-temp/casa-o-bom/10.webp', alt: 'Detalhes' }
             ]
         },
-        'golden-green': {
-            title: 'Condomínio Golden Green',
-            architect: 'Duda Porto',
-            location: 'Barra da Tijuca, RJ',
-            area: '400 m²',
+        'casa-renato-augusto': {
+            title: 'Casa Renato Augusto',
+            architect: 'Paola Ribeiro e Duda Porto',
+            location: 'Rio de Janeiro, RJ',
+            area: '500 m²',
             year: '2024',
-            description: 'Em parceria com arquiteto Duda Porto, este imóvel apresenta móveis construídos com laca fendi, laminado natural freijó e um painel brise no hall social, deixando o ambiente ainda mais acolhedor. Localizado no Golden Green, na Barra da Tijuca, o apartamento possui uma copa toda em laca preta, onde é servido o café da manhã e também é o espaço em que o casal recebe seus amigos, um dos ambientes preferidos dos moradores.',
+            description: 'Projeto desenvolvido em parceria entre as arquitetas Paola Ribeiro e Duda Porto. Esta residência apresenta um conceito moderno e sofisticado, com móveis sob medida que maximizam o aproveitamento dos espaços e proporcionam conforto e elegância aos ambientes.',
             images: [
-                { src: 'assets/projects/golden-green/01.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/golden-green/02.jpg', alt: 'Sala de jantar' },
-                { src: 'assets/projects/golden-green/03.jpg', alt: 'Home theater' },
-                { src: 'assets/projects/golden-green/04.jpg', alt: 'Escritório' },
-                { src: 'assets/projects/golden-green/05.jpg', alt: 'Quarto' },
-                { src: 'assets/projects/golden-green/06.jpg', alt: 'Banheiro' },
-                { src: 'assets/projects/golden-green/07.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/golden-green/08.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/golden-green/09.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/golden-green/10.jpg', alt: 'Sala de estar' }
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/01.webp', alt: 'Fachada' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/02.webp', alt: 'Sala de estar' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/03.webp', alt: 'Cozinha gourmet' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/04.webp', alt: 'Sala de jantar' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/05.webp', alt: 'Quarto principal' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/06.webp', alt: 'Banheiro suite' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/07.webp', alt: 'Home office' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/08.webp', alt: 'Área de lazer' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/09.webp', alt: 'Piscina' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/10.webp', alt: 'Jardim' },
+                { src: 'assets/optimized/projetos-temp/casa-renato-augusto/11.webp', alt: 'Vista noturna' }
             ]
         },
-        'casa-teresopolis': {
-            title: 'Casa Teresópolis',
-            architect: 'Mas Arquitetura',
-            location: 'Teresópolis, RJ',
-            area: '400 m²',
+        'casa-flavio': {
+            title: 'Casa Flavio',
+            architect: 'Arquitetura Essencial',
+            location: 'Rio de Janeiro, RJ',
+            area: '350 m²',
             year: '2024',
-            description: 'Localizada em um condomínio de alto padrão em Teresópolis, essa casa foi trabalhada com material Ipê Champagne, Laminado Cumaru e madeiras de demolição na cozinha gourmet. Com projeto da Mas Arquitetura, executado por Cristina Afonso, os quartos infantis e banheiros receberam lacas brancas e diferentes tonalidades de verde.',
+            description: 'Projeto assinado pelo escritório Arquitetura Essencial, esta residência destaca-se pela integração harmoniosa entre arquitetura e marcenaria. Os ambientes foram pensados para proporcionar máximo conforto e funcionalidade, com soluções criativas em móveis planejados.',
             images: [
-                { src: 'assets/projects/casa-teresopolis/01.jpg', alt: 'Área de lazer' },
-                { src: 'assets/projects/casa-teresopolis/02.jpg', alt: 'Área gourmet' },
-                { src: 'assets/projects/casa-teresopolis/03.jpg', alt: 'Área gourmet' },
-                { src: 'assets/projects/casa-teresopolis/04.jpg', alt: 'Área gourmet' },
-                { src: 'assets/projects/casa-teresopolis/05.jpg', alt: 'Área gourmet' },
-                { src: 'assets/projects/casa-teresopolis/06.jpg', alt: 'Área gourmet' },
-                { src: 'assets/projects/casa-teresopolis/07.jpg', alt: 'Sala de estar' },
-                { src: 'assets/projects/casa-teresopolis/08.jpg', alt: 'Banheiro' },
-                { src: 'assets/projects/casa-teresopolis/09.jpg', alt: 'Quarto casal' },
-                { src: 'assets/projects/casa-teresopolis/10.jpg', alt: 'Quarto visita' },
-                { src: 'assets/projects/casa-teresopolis/11.jpg', alt: 'Quarto visita' },
-                { src: 'assets/projects/casa-teresopolis/12.jpg', alt: 'Cozinha' }
+                { src: 'assets/optimized/projetos-temp/casa-flavio/01.webp', alt: 'Vista externa' },
+                { src: 'assets/optimized/projetos-temp/casa-flavio/02.webp', alt: 'Sala principal' },
+                { src: 'assets/optimized/projetos-temp/casa-flavio/03.webp', alt: 'Cozinha integrada' },
+                { src: 'assets/optimized/projetos-temp/casa-flavio/04.webp', alt: 'Quarto casal' },
+                { src: 'assets/optimized/projetos-temp/casa-flavio/05.webp', alt: 'Banheiro principal' },
+                { src: 'assets/optimized/projetos-temp/casa-flavio/06.webp', alt: 'Área gourmet' }
             ]
         }
     };
@@ -117,7 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.projectDetailView.style.display = 'none';
         utils.updateURL();
         utils.scrollToTop();
-        setTimeout(initScrollReveal, 100);
+        // Use requestAnimationFrame for better performance
+        requestAnimationFrame(() => {
+            setTimeout(initScrollReveal, 50);
+        });
     }
 
     function showProjectDetail(projectId) {
@@ -149,23 +158,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // SISTEMA DE FILTROS
     function handleFilter(filterValue) {
         elements.projectCards.forEach(card => {
-            const cardArchitect = card.getAttribute('data-architect');
-            const shouldShow = filterValue === 'all' || cardArchitect === filterValue;
+            const cardArchitects = card.getAttribute('data-architect').split(' ');
+            const shouldShow = filterValue === 'all' || cardArchitects.includes(filterValue);
             
             utils.toggleClasses(card, shouldShow ? 'hidden' : 'show', shouldShow ? 'show' : 'hidden');
         });
     }
 
-    // SCROLL REVEAL EFFECT
+    // SCROLL REVEAL EFFECT - OPTIMIZED
     let scrollObserver;
+    let isObserverActive = false;
 
     function initScrollReveal() {
-        if (scrollObserver) scrollObserver.disconnect();
+        // Prevent multiple observers
+        if (isObserverActive) return;
+        
+        if (scrollObserver) {
+            scrollObserver.disconnect();
+        }
 
         const isMobile = window.innerWidth <= 768;
         const observerOptions = {
-            threshold: isMobile ? 0.05 : 0.1,
-            rootMargin: isMobile ? '0px 0px -30px 0px' : '0px 0px -50px 0px'
+            threshold: isMobile ? 0.1 : 0.15,
+            rootMargin: isMobile ? '0px 0px -10% 0px' : '0px 0px -15% 0px'
         };
 
         scrollObserver = new IntersectionObserver((entries) => {
@@ -173,22 +188,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 const target = entry.target;
                 
                 if (entry.isIntersecting) {
-                    utils.toggleClasses(target, 'reveal-out', 'reveal');
+                    if (!target.classList.contains('reveal')) {
+                        utils.toggleClasses(target, 'reveal-out', 'reveal');
+                    }
                 } else if (target.classList.contains('reveal')) {
                     utils.toggleClasses(target, 'reveal', 'reveal-out');
-                    
-                    setTimeout(() => {
-                        if (!entry.isIntersecting) target.classList.remove('reveal-out');
-                    }, isMobile ? 400 : 600);
                 }
             });
         }, observerOptions);
 
-        elements.projectCards.forEach(card => {
-            if (!card.classList.contains('hidden')) {
-                scrollObserver.observe(card);
-            }
+        // Only observe visible cards
+        const visibleCards = Array.from(elements.projectCards).filter(card => 
+            !card.classList.contains('hidden')
+        );
+
+        visibleCards.forEach(card => {
+            scrollObserver.observe(card);
         });
+
+        isObserverActive = true;
+    }
+
+    function cleanupScrollReveal() {
+        if (scrollObserver) {
+            scrollObserver.disconnect();
+            scrollObserver = null;
+        }
+        isObserverActive = false;
     }
 
     // EVENT LISTENERS
@@ -232,7 +258,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 utils.toggleDropdown(false);
                 handleFilter(item.getAttribute('data-filter'));
                 
-                setTimeout(() => initScrollReveal(), 100);
+                // Reinitialize observer after filter
+                cleanupScrollReveal();
+                requestAnimationFrame(() => {
+                    setTimeout(initScrollReveal, 100);
+                });
             });
         });
 
@@ -242,12 +272,15 @@ document.addEventListener('DOMContentLoaded', function() {
             projetoId && projectsData[projetoId] ? showProjectDetail(projetoId) : showProjectsList();
         });
 
-        // Responsive scroll reveal
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(initScrollReveal, 250);
-        });
+        // Optimized resize handler
+        const handleResize = debounce(() => {
+            cleanupScrollReveal();
+            requestAnimationFrame(() => {
+                setTimeout(initScrollReveal, 100);
+            });
+        }, 300);
+
+        window.addEventListener('resize', handleResize);
     }
 
     // INICIALIZAÇÃO
@@ -262,7 +295,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (projetoId && projectsData[projetoId]) {
             showProjectDetail(projetoId);
         } else {
-            initScrollReveal();
+            // Initialize scroll reveal with delay for better performance
+            requestAnimationFrame(() => {
+                setTimeout(initScrollReveal, 100);
+            });
         }
     }
 

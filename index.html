@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Logaf - Soluções em Engenharia e Arquitetura">
     <title>Logaf - Engenharia e Arquitetura</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- Preload crítico da imagem hero -->
+    <link rel="preload" as="image" href="assets/optimized/hero-desktop.webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Raleway:wght@400;500;600;700&family=Tangerine:wght@400;700&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Performance optimizations loaded asynchronously -->
+    <link rel="preload" href="css/performance.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/performance.css"></noscript>
 </head>
 <body>
     <!-- Header -->
@@ -14,7 +24,7 @@
         <nav class="nav-container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/Logo-logaf-sfundo.PNG" alt="Logaf Logo">
+                    <img src="assets/optimized/Logo-logaf-sfundo-small.webp" alt="Logaf Logo" width="150" height="60">
                 </a>
             </div>
             <button class="mobile-menu-btn" aria-label="Menu">
@@ -26,7 +36,6 @@
                 <li><a href="index.html" class="active">INÍCIO</a></li>
                 <li><a href="sobre.html">SOBRE NÓS</a></li>
                 <li><a href="projetos.html">PROJETOS</a></li>
-                <li><a href="eventos.html">EVENTOS</a></li>
                 <li><a href="index.html#contact">CONTATO</a></li>
                 <li class="social-links">
                     <a href="https://www.facebook.com/logafmarcenaria/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -39,25 +48,37 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-slider">
-            <div class="hero-slide active" style="background-image: url('assets/hero-section.jpg');"></div>
-            <div class="hero-slide" style="background-image: url('assets/projects/reserva-golf/01.jpg');"></div>
-            <div class="hero-slide" style="background-image: url('assets/projects/golden-green/01.jpg');"></div>
-            <div class="hero-slide" style="background-image: url('assets/projects/casa-teresopolis/01.jpg');"></div>
+            <div class="hero-slide active">
+                <img src="assets/optimized/hero-desktop.webp" alt="Logaf - Transformando ideias em realidade" 
+                     loading="eager" fetchpriority="high" width="1920" height="1080">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/optimized/01-desktop.webp" alt="Logaf - Projeto 1" 
+                     loading="lazy" width="1920" height="1080">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/optimized/02-desktop.webp" alt="Logaf - Projeto 2" 
+                     loading="lazy" width="1920" height="1080">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/optimized/03-desktop.webp" alt="Logaf - Projeto 3" 
+                     loading="lazy" width="1920" height="1080">
+            </div>
         </div>
        
         <!-- Indicadores do Hero Slider -->
         <div class="hero-indicators">
             <button class="hero-indicator active" data-slide="0" aria-label="Ir para slide 1">
-                <img src="assets/Icone O logaf.png" alt="Logaf Icon">
+                <img src="assets/optimized/icone-o-logaf-small.webp" alt="Logaf Icon" width="40" height="40">
             </button>
             <button class="hero-indicator" data-slide="1" aria-label="Ir para slide 2">
-                <img src="assets/Icone O logaf.png" alt="Logaf Icon">
+                <img src="assets/optimized/icone-o-logaf-small.webp" alt="Logaf Icon" width="40" height="40">
             </button>
             <button class="hero-indicator" data-slide="2" aria-label="Ir para slide 3">
-                <img src="assets/Icone O logaf.png" alt="Logaf Icon">
+                <img src="assets/optimized/icone-o-logaf-small.webp" alt="Logaf Icon" width="40" height="40">
             </button>
             <button class="hero-indicator" data-slide="3" aria-label="Ir para slide 4">
-                <img src="assets/Icone O logaf.png" alt="Logaf Icon">
+                <img src="assets/optimized/icone-o-logaf-small.webp" alt="Logaf Icon" width="40" height="40">
             </button>
         </div>
         
@@ -74,7 +95,7 @@
                     <h2>Quem Somos</h2>
                 </div>
                 <div class="about-intro-col about-intro-text">
-                    <p>Inserir um pouquinho de texto é uma ótima maneira de enriquecer a narrativa e proporcionar mais detalhes ao leitor.</p>
+                    <p>A Logaf é referência em marcenaria de alto padrão desde 1986. Atuando nos estados do Rio de Janeiro e São Paulo, unimos tradição, inovação e atenção aos detalhes para entregar móveis sob medida que elevam o design dos espaços.</p>
                     <div class="divider"></div>
                     <a href="sobre.html" class="about-link">Clique e saiba mais</a>
                 </div>
@@ -88,25 +109,37 @@
             <h2 class="services-title">Serviços</h2>
             <div class="services-grid">
                 <div class="service-item" data-service="executivo">
-                    <img src="assets/LOGAF-Executivo.jpg" alt="Serviços Executivos">
+                    <picture>
+                        <source srcset="assets/optimized/servicos/LOGAF-Executivo-small.webp" type="image/webp">
+                        <img src="assets/LOGAF-Executivo.jpg" alt="Serviços Executivos" loading="lazy" width="400" height="300">
+                    </picture>
                     <div class="service-overlay">
                         <h3>Projetos Executivos</h3>
                     </div>
                 </div>
                 <div class="service-item" data-service="fabricacao">
-                    <img src="assets/LOGAF-FABRICACAO.jpg" alt="Fabricação">
+                    <picture>
+                        <source srcset="assets/optimized/servicos/LOGAF-FABRICACAO-small.webp" type="image/webp">
+                        <img src="assets/LOGAF-FABRICACAO.jpg" alt="Fabricação" loading="lazy" width="400" height="300">
+                    </picture>
                     <div class="service-overlay">
                         <h3>Fabricação dos Móveis</h3>
                     </div>
                 </div>
                 <div class="service-item" data-service="manutencao">
-                    <img src="assets/LOGAF-MANUTENCAO.jpg" alt="Manutenção">
+                    <picture>
+                        <source srcset="assets/optimized/servicos/LOGAF-MANUTENCAO-small.webp" type="image/webp">
+                        <img src="assets/LOGAF-MANUTENCAO.jpg" alt="Manutenção" loading="lazy" width="400" height="300">
+                    </picture>
                     <div class="service-overlay">
                         <h3>Manutenção</h3>
                     </div>
                 </div>
                 <div class="service-item" data-service="marcenaria">
-                    <img src="assets/LOGAF-MARCENARIA.jpg" alt="Marcenaria">
+                    <picture>
+                        <source srcset="assets/optimized/servicos/LOGAF-MARCENARIA-small.webp" type="image/webp">
+                        <img src="assets/LOGAF-MARCENARIA.jpg" alt="Marcenaria" loading="lazy" width="400" height="300">
+                    </picture>
                     <div class="service-overlay">
                         <h3>Marcenaria</h3>
                     </div>
@@ -124,25 +157,46 @@
             <div class="projects-carousel">
                 <div class="projects-track">
                     <div class="project-item">
-                        <img src="assets/projects/reserva-golf/01.jpg" alt="Condomínio Reserva Golf">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-o-bom/01.webp" type="image/webp">
+                            <img src="assets/projects/Casa-O-bom-(Duda-Porto)/01.jpg" alt="Casa O Bom" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                     <div class="project-item">
-                        <img src="assets/projects/golden-green/01.jpg" alt="Condomínio Golden Green">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-renato-augusto/01.webp" type="image/webp">
+                            <img src="assets/projects/Casa-Renato-Augusto-(Paola-Ribeiro-e-Duda-Porto)/01.jpg" alt="Casa Renato Augusto" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                     <div class="project-item">
-                        <img src="assets/projects/casa-teresopolis/01.jpg" alt="Casa Teresópolis">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-flavio/01.webp" type="image/webp">
+                            <img src="assets/projects/Casa-Flavio-(Arquitetura-Essencial)/01.jpg" alt="Casa Flavio" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                     <div class="project-item">
-                        <img src="assets/projects/reserva-golf/03.jpg" alt="Reserva Golf - Sala">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-o-bom/02.webp" type="image/webp">
+                            <img src="assets/projects/Casa-O-bom-(Duda-Porto)/02.jpg" alt="Casa O Bom - Interior" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                     <div class="project-item">
-                        <img src="assets/projects/golden-green/02.jpg" alt="Golden Green - Cozinha">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-renato-augusto/02.webp" type="image/webp">
+                            <img src="assets/projects/Casa-Renato-Augusto-(Paola-Ribeiro-e-Duda-Porto)/02.jpg" alt="Casa Renato Augusto - Cozinha" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                     <div class="project-item">
-                        <img src="assets/projects/casa-teresopolis/02.jpg" alt="Casa Teresópolis - Quarto">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-flavio/02.webp" type="image/webp">
+                            <img src="assets/projects/Casa-Flavio-(Arquitetura-Essencial)/02.jpg" alt="Casa Flavio - Sala" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                     <div class="project-item">
-                        <img src="assets/projects/reserva-golf/05.jpg" alt="Reserva Golf - Escritório">
+                        <picture>
+                            <source srcset="assets/optimized/projetos-temp/casa-o-bom/03.webp" type="image/webp">
+                            <img src="assets/projects/Casa-O-bom-(Duda-Porto)/03.jpg" alt="Casa O Bom - Quarto" loading="lazy" width="600" height="400">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -186,7 +240,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-about">
-                <img src="assets/Logo-logaf-sfundo.PNG" alt="Logaf Logo" class="footer-logo">
+                <img src="assets/Logo-logaf-sfundo.PNG" alt="Logaf Logo" class="footer-logo" loading="lazy" width="150" height="60">
                 <p>Soluções em engenharia e arquitetura para seu projeto</p>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/logafmarcenaria/"><i class="fab fa-facebook"></i></a>
@@ -207,6 +261,7 @@
         </div>
     </footer>
 
+    <script src="js/performance.js"></script>
     <script src="js/main.js"></script>
     <script src="js/projects.js"></script>
 </body>

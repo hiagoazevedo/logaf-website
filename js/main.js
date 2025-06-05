@@ -1,4 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // UTILITY FUNCTIONS FOR PERFORMANCE
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
@@ -27,14 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (scrollY > 50) {
             // Estado: header branco, logo preto, menu hambúrguer preto
-            isScrolled = true;
-            header.classList.add('scrolled');
-            if (logoImg) logoImg.src = logoPreta;
+            if (!isScrolled) {
+                isScrolled = true;
+                header.classList.add('scrolled');
+                if (logoImg) logoImg.src = logoPreta;
+            }
         } else {
             // Estado: header transparente, logo branco, menu hambúrguer branco
-            isScrolled = false;
-            header.classList.remove('scrolled');
-            if (logoImg) logoImg.src = logoBranca;
+            if (isScrolled) {
+                isScrolled = false;
+                header.classList.remove('scrolled');
+                if (logoImg) logoImg.src = logoBranca;
+            }
         }
     }
 
@@ -92,18 +122,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Efeito do header ao rolar
-    window.addEventListener('scroll', function() {
+    // Services scroll detection for mobile - OPTIMIZED
+    const serviceItems = document.querySelectorAll('.service-item');
+    let servicesObserver;
+
+    function initServicesScrollDetection() {
+        if (serviceItems.length === 0) return;
+        
+        // Disconnect existing observer
+        if (servicesObserver) {
+            servicesObserver.disconnect();
+        }
+        
+        // Only initialize on mobile
+        if (window.innerWidth <= 768) {
+            servicesObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active from all items first
+                        serviceItems.forEach(item => item.classList.remove('active'));
+                        // Add active to current item
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.6,
+                rootMargin: '-20% 0px -20% 0px'
+            });
+
+            serviceItems.forEach(item => {
+                servicesObserver.observe(item);
+            });
+        }
+    }
+
+    // UNIFIED SCROLL HANDLER - THROTTLED
+    const handleScroll = throttle(() => {
         // Só aplica o efeito se o menu não estiver aberto
         if (!navMenu.classList.contains('active')) {
             checkScrollState();
         }
-    });
+    }, 16); // ~60fps
 
-    // Garante que o menu fecha ao redimensionar
-    window.addEventListener('resize', function() {
+    // Single scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Optimized resize handler
+    const handleResize = debounce(() => {
         closeMenu();
-    });
+        initServicesScrollDetection();
+    }, 250);
+
+    window.addEventListener('resize', handleResize);
+
+    // Initialize services scroll detection
+    initServicesScrollDetection();
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -335,55 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Services scroll detection for mobile
-    function initServicesScrollDetection() {
-        const serviceItems = document.querySelectorAll('.service-item');
-        
-        if (serviceItems.length === 0) return;
-        
-        function checkServiceInView() {
-            // Only run on mobile
-            if (window.innerWidth > 768) return;
-            
-            const viewportCenter = window.innerHeight / 2;
-            let activeItem = null;
-            let minDistance = Infinity;
-            
-            serviceItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                const itemCenter = rect.top + rect.height / 2;
-                const distance = Math.abs(viewportCenter - itemCenter);
-                
-                // Remove active class from all items
-                item.classList.remove('active');
-                
-                // Find the item closest to viewport center
-                if (distance < minDistance && rect.top < viewportCenter && rect.bottom > viewportCenter) {
-                    minDistance = distance;
-                    activeItem = item;
-                }
-            });
-            
-            // Add active class to the closest item
-            if (activeItem) {
-                activeItem.classList.add('active');
-            }
-        }
-        
-        // Check on scroll
-        window.addEventListener('scroll', checkServiceInView);
-        
-        // Check on resize
-        window.addEventListener('resize', checkServiceInView);
-        
-        // Initial check
-        checkServiceInView();
-    }
-    
-    // Initialize services scroll detection
-    initServicesScrollDetection();
-
-    // Projects Carousel (Index) - Rolagem contínua e suave
+    // Projects Carousel (Index)
     function initProjectsCarousel() {
         const track = document.querySelector('.projects-track');
         const originalItems = document.querySelectorAll('.project-item');
@@ -391,33 +416,108 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!track || originalItems.length === 0) {
             return;
         }
-        
-        // Duplica os itens múltiplas vezes para criar efeito infinito suave
-        const duplicateCount = 3; // Duplica 3 vezes para garantir fluidez
+        // Remove animação CSS existente
+        track.style.animation = 'none';
+        // Duplica os itens múltiplas vezes para garantir loop infinito suave
+        const duplicateCount = 4; // Aumentado para garantir mais fluidez
+        // Adiciona clones no final
         for (let i = 0; i < duplicateCount; i++) {
             originalItems.forEach(item => {
                 const clone = item.cloneNode(true);
+                clone.classList.add('cloned');
                 track.appendChild(clone);
             });
         }
         
-        // Calcula a largura total dos itens originais
-        const itemWidth = originalItems[0].offsetWidth;
-        const gap = 5;
-        const totalOriginalWidth = originalItems.length * (itemWidth + gap);
-        
-        // Aplica animação CSS contínua (velocidade ajustada para ser suave)
-        track.style.animation = `scrollProjects ${totalOriginalWidth / 220}s linear infinite`;
-        
-        // Função para recalcular a animação quando a janela é redimensionada
-        function updateAnimation() {
-            const newItemWidth = originalItems[0].offsetWidth;
-            const newTotalWidth = originalItems.length * (newItemWidth + gap);
-            track.style.animation = `scrollProjects ${newTotalWidth / 220}s linear infinite`;
+        // Adiciona clones no início (para transição suave quando volta)
+        const allItems = track.querySelectorAll('.project-item');
+        for (let i = originalItems.length - 1; i >= 0; i--) {
+            const clone = originalItems[i].cloneNode(true);
+            clone.classList.add('cloned-start');
+            track.insertBefore(clone, track.firstChild);
         }
         
-        // Atualiza a animação quando a janela é redimensionada
-        window.addEventListener('resize', updateAnimation);
+        // Calcula dimensões
+        const itemWidth = originalItems[0].offsetWidth;
+        const gap = 5;
+        const itemWidthWithGap = itemWidth + gap;
+        const totalOriginalWidth = originalItems.length * itemWidthWithGap;
+        
+        // Posiciona o track no início dos itens originais (após os clones iniciais)
+        track.style.transform = `translateX(-${totalOriginalWidth}px)`;
+        
+        // Velocidade da animação (pixels por segundo)
+        const speed = 80; // Ajuste este valor para controlar a velocidade
+        const duration = totalOriginalWidth / speed;
+        
+        // Aplica animação CSS personalizada
+        const keyframeName = 'scrollProjectsInfinite';
+        
+        // Remove keyframe existente se houver
+        const existingStyle = document.getElementById('carousel-keyframes');
+        if (existingStyle) {
+            existingStyle.remove();
+        }
+        
+        // Cria novo keyframe
+        const style = document.createElement('style');
+        style.id = 'carousel-keyframes';
+        style.textContent = `
+            @keyframes ${keyframeName} {
+                0% {
+                    transform: translateX(-${totalOriginalWidth}px);
+                }
+                100% {
+                    transform: translateX(-${totalOriginalWidth * 2}px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Aplica a animação
+        track.style.animation = `${keyframeName} ${duration}s linear infinite`;
+        
+        // Função para recalcular quando a janela é redimensionada
+        function updateAnimation() {
+            // Para a animação atual
+            track.style.animation = 'none';
+            
+            // Recalcula dimensões
+            const newItemWidth = track.querySelector('.project-item').offsetWidth;
+            const newItemWidthWithGap = newItemWidth + gap;
+            const newTotalWidth = originalItems.length * newItemWidthWithGap;
+            const newDuration = newTotalWidth / speed;
+            
+            // Reposiciona
+            track.style.transform = `translateX(-${newTotalWidth}px)`;
+            
+            // Atualiza keyframe
+            const existingStyle = document.getElementById('carousel-keyframes');
+            if (existingStyle) {
+                existingStyle.textContent = `
+                    @keyframes ${keyframeName} {
+                        0% {
+                            transform: translateX(-${newTotalWidth}px);
+                        }
+                        100% {
+                            transform: translateX(-${newTotalWidth * 2}px);
+                        }
+                    }
+                `;
+            }
+            
+            // Reaplica animação
+            requestAnimationFrame(() => {
+                track.style.animation = `${keyframeName} ${newDuration}s linear infinite`;
+            });
+        }
+        
+        // Debounce para resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateAnimation, 250);
+        });
     }
     
     // Inicializa o carrossel de projetos

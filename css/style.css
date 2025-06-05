@@ -1,10 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
-
-
 /* Componentes */
 @import url('components/header.css');
 @import url('components/hero.css');
@@ -17,7 +10,6 @@
 /* Páginas */
 @import url('pages/projects.css');
 @import url('pages/about.css');
-@import url('pages/events.css');
 
 :root {
     --primary-color: #5a8d64;
@@ -49,10 +41,33 @@
     box-sizing: border-box;
 }
 
+/* Performance optimizations */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: var(--font-raleway);
+    font-family: var(--font-inter);
     line-height: 1.6;
     color: var(--dark-gray);
+    /* Optimize text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* GPU acceleration for common elements */
+img {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+/* Optimize transitions globally */
+*,
+*::before,
+*::after {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 body h2 {
@@ -68,11 +83,11 @@ body h2 {
 
 @keyframes slideIn {
     from {
-        transform: translateX(100%);
+        transform: translate3d(100%, 0, 0);
         opacity: 0;
     }
     to {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 } 

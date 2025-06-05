@@ -1,6 +1,7 @@
 /* Estilo do Banner de Título */
 .page-title-banner {
-  background-color: var(--gray);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  /* background-color: var(--gray); */
   padding: 8rem 2rem 2rem;
   text-align: center;
 }
@@ -9,7 +10,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
-  color: var(--dark-gray);
+  color: var(--white);
   font-size: 2rem;
   text-align: start;
   text-transform: uppercase;
@@ -288,6 +289,10 @@
 
 /* Responsividade - Mobile */
 @media (max-width: 768px) {
+  .page-title-banner {
+    padding: 6rem 0 1rem;
+  }
+
   .page-title-banner h1 {
     font-size: 1.5rem;
   }

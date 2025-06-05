@@ -1,0 +1,73 @@
+/* Performance Optimizations CSS */
+
+/* Reduce paint and layout thrashing */
+.service-item,
+.project-item-minimal,
+.hero-slide {
+    contain: layout style paint;
+}
+
+/* Optimize scroll performance */
+.services-grid,
+.projects-container,
+.hero-slider {
+    contain: layout;
+}
+
+/* Preload critical animations */
+@media (prefers-reduced-motion: no-preference) {
+    .service-item {
+        will-change: transform;
+    }
+    
+    .service-item img {
+        will-change: filter;
+    }
+    
+    .project-item-minimal {
+        will-change: transform, opacity;
+    }
+    
+    .project-image-wide img {
+        will-change: transform;
+    }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .service-item,
+    .project-item-minimal {
+        will-change: auto;
+    }
+}
+
+/* Optimize for high refresh rate displays */
+@media (min-resolution: 120dpi) {
+    .service-item img,
+    .project-image-wide img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Critical resource hints */
+.service-item img,
+.project-image-wide img {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+}
+
+/* Optimize intersection observer targets */
+.project-item-minimal {
+    content-visibility: auto;
+    contain-intrinsic-size: 100% 400px;
+} 

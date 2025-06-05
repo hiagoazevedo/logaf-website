@@ -1,4 +1,4 @@
-/* HEADER MINIMALISTA INSPIRADO NO SIQUEIRA AZUL */
+/* HEADER MINIMALISTA */
 .header {
   position: fixed;
   top: 0;
@@ -212,7 +212,7 @@
     height: 68px;
   }
   .header.scrolled .logo img {
-    height: 30px;
+    height: 60px;
   }
   .nav-menu.active {
     height: 500px;

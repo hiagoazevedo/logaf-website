@@ -91,6 +91,10 @@
     padding: 4rem 1rem;
   }
   
+  .contact .container {
+    width: 100%;
+  }
+  
   .contact h2 {
     font-size: 1.5rem;
     margin-bottom: 3rem;
