@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dados dos projetos
     const projectsData = {
         'casa-o-bom': {
-            title: 'Casa O Bom',
+            title: 'Barra da Tijuca',
             architect: 'Duda Porto',
             location: 'Rio de Janeiro, RJ',
             area: '400 m²',
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         'casa-renato-augusto': {
-            title: 'Casa Renato Augusto',
+            title: 'Barra da Tijuca',
             architect: 'Paola Ribeiro e Duda Porto',
             location: 'Rio de Janeiro, RJ',
             area: '500 m²',
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         'casa-flavio': {
-            title: 'Casa Flavio',
+            title: 'Barra da Tijuca',
             architect: 'Arquitetura Essencial',
             location: 'Rio de Janeiro, RJ',
             area: '350 m²',

@@ -110,14 +110,14 @@
 .text-titles {
   display: flex;
   flex-direction: column;
-  gap: 6.5rem;
+  gap: 9.5rem;
 }
 
 .text-paragraphs {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  width: 350px;
+  width: 570px;
   margin-left: auto;
   text-align: justify;
 }
@@ -172,6 +172,7 @@
   color: var(--white);
   margin-bottom: 0.5rem;
   line-height: 1;
+  text-transform: lowercase;
 }
 
 .stat-item p {
@@ -196,10 +197,10 @@
   align-items: start;
 }
 
-.services-title {
+.about-services-title {
   font-family: var(--font-tenor-sans);
   font-size: 2.5rem;
-  color: var(--primary-color);
+  color: var(--white);
   margin-bottom: 2rem;
   padding-top: 2rem;
   text-transform: none;
@@ -241,7 +242,7 @@
   margin: 0;
 }
 
-.services-description .highlight {
+.services-description .highlight, .text-paragraphs .highlight {
   color: var(--primary-color);
   font-weight: 600;
 }

@@ -51,8 +51,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-    padding: 40px 30px 30px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    padding: 40px 15px 30px;
     transform: translate3d(0, 100%, 0);
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
@@ -64,11 +64,20 @@
 
 .service-overlay h3 {
     font-family: var(--font-tenor-sans);
-    font-size: 1.6rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--white);
     margin: 0;
-    text-align: center;
+    text-align: left;
+}
+
+.service-overlay p {
+    font-family: var(--font-tenor-sans);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0;
+    text-align: left;
 }
 
 /* Responsividade */
@@ -126,6 +135,11 @@
     }
     
     .service-overlay h3 {
+        font-size: 1rem;
+    }
+
+    .service-overlay p {
         font-size: 1.4rem;
     }
+
 }

@@ -4,6 +4,47 @@ Site institucional da Logaf, empresa especializada em marcenaria e projetos arqu
 
 ## 📋 Versões
 
+### 📊 Versão 2.3 - Página Sobre Expandida e Dados Corporativos (Janeiro 2025)
+
+#### Nova Seção de Estatísticas
+- **Métricas Corporativas**: Grid com 4 estatísticas principais
+  - +500 Projetos Entregues
+  - +40 Anos de Experiência  
+  - 100% de Madeira Certificada
+  - +8.000 Móveis Planejados Fabricados
+- **Layout Grid Responsivo**: 4 colunas desktop, 2 colunas mobile
+- **Tipografia Impactante**: Números grandes com fonte optimizada
+- **Fundo Neutro**: Integração visual harmoniosa com página
+
+#### Seção de Serviços Detalhada
+- **Descrição Expandida**: Conteúdo completo sobre áreas de atuação
+- **Segmentação por Mercado**: 
+  - Residencial: cozinhas, closets, quartos, painéis
+  - Externo: madeiras maciças, saunas, decks, pergolados  
+  - Corporativo: escritórios, recepções, móveis empresariais
+- **Layout Profissional**: Grid organizado com tipografia Inter
+- **Responsividade Completa**: Adaptação para todos dispositivos
+
+#### Conteúdo Institucional Aprimorado
+- **História da Empresa**: Narrativa desde 1986 até hoje
+- **Valores Destacados**: Serviço 360° e compromisso com qualidade
+- **Texto Institucional**: Posicionamento como referência no mercado
+- **Highlights Visuais**: Palavras-chave em cor primária
+
+#### Melhorias de UX
+- **Navegação de Processos**: Três etapas (PROJETO, ESTRATÉGIA, EXECUÇÃO)
+- **Hierarquia Visual**: Títulos e parágrafos bem organizados
+- **Imagem Corporativa**: Visual que transmite profissionalismo
+- **Mobile First**: Design pensado para experiência mobile
+
+#### Arquivos Modificados
+```
+sobre.html - Novas seções de estatísticas e serviços expandidos
+css/pages/about.css - Estilos para estatísticas e layout aprimorado
+```
+
+---
+
 ### 🎨 Versão 2.2 - Redesign Completo da Página de Projetos (Janeiro 2025)
 
 #### Reformulação Visual Minimalista
