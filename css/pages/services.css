@@ -1,0 +1,272 @@
+/* Estilo do Banner de Título */
+.page-title-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 8rem 2rem 2rem;
+    text-align: center;
+}
+
+.page-title-banner h1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: var(--white);
+    font-size: 2rem;
+    text-align: start;
+    text-transform: uppercase;
+    font-family: var(--font-tenor-sans);
+}
+
+/* Seção Principal de Serviços */
+.main-services-section {
+    background-color: var(--light-gray);
+    padding: 4rem 0;
+}
+
+.services-container {
+    max-width: 100%;
+}
+
+/* Bloco de Serviço */
+.service-block {
+    margin-bottom: 3rem;
+    /* Scroll Reveal Effect */
+    opacity: 0;
+    transform: translate3d(0, 60px, 0);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+}
+
+.service-block:last-child {
+    margin-bottom: 0;
+}
+
+.service-block.reveal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.service-block.reveal-out {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+    transition: all 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.service-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 2rem;
+}
+
+.service-content.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Texto do Serviço */
+.service-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 2;
+    max-width: 900px;
+}
+
+.service-title {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: var(--font-tenor-sans);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.service-description {
+    color: var(--tertiary-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-family: var(--font-inter);
+    text-align: justify;
+    max-width: 450px;
+}
+
+/* Imagem do Serviço */
+.service-image {
+    flex: 1;
+    max-width: 300px;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.service-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Responsividade Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .services-container {
+        max-width: 100%;
+    }
+
+    .service-content {
+        justify-content: flex-end;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .service-text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 2;
+        max-width: 700px;
+        padding: 0 1rem;
+    }
+
+    .service-description {
+        max-width: 350px;
+    }
+
+    .service-image {
+        flex: 1;
+        max-width: 280px;
+        min-width: 220px;
+    }
+
+    .service-image img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .page-title-banner {
+        padding: 6rem 1rem 1.5rem;
+    }
+
+    .page-title-banner h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .main-services-section {
+        padding: 2rem 0;
+    }
+
+    .services-container {
+        max-width: 100%;
+    }
+
+    .service-content {
+        justify-content: flex-end;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .service-content.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .service-text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 2;
+        max-width: 500px;
+        padding: 0 1rem;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .service-description {
+        text-align: justify;
+        font-size: 0.8rem;
+        max-width: 240px;
+    }
+
+    .service-image {
+        flex: 1;
+        max-width: 250px;
+        min-width: 200px;
+        justify-content: center;
+    }
+
+    .service-image img {
+        height: 160px;
+    }
+
+    .service-block {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title-banner h1 {
+        font-size: 1.25rem;
+    }
+
+    .services-container {
+        padding: 0 0.5rem;
+    }
+
+    .service-content,
+    .service-content.reverse {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .service-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        text-align: center;
+    }
+
+    .service-description {
+        font-size: 0.85rem;
+        max-width: 100%;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    .service-image {
+        max-width: 100%;
+        min-width: auto;
+        justify-content: center;
+    }
+
+    .service-image img {
+        height: 220px;
+        width: 80vw;
+        max-width: none;
+    }
+
+    .service-block {
+        margin-bottom: 1.5rem;
+        /* Scroll reveal ajustado para mobile */
+        transform: translateY(40px);
+    }
+
+    .service-block.reveal-out {
+        transform: translateY(-20px);
+    }
+} 

@@ -143,3 +143,63 @@
     }
 
 }
+
+/* Estilos específicos para itens clicáveis */
+.service-item.clickable {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-item.clickable:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
+/* Adiciona indicação visual de que é clicável */
+.service-item.clickable::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%23000'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.service-item.clickable:hover::after {
+    opacity: 1;
+}
+
+/* Ajustes para mobile - remove alguns efeitos para melhor performance */
+@media (max-width: 768px) {
+    .service-item.clickable {
+        transition: none;
+    }
+    
+    .service-item.clickable:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .service-item.clickable::after {
+        opacity: 1;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background-size: 12px;
+    }
+}

@@ -311,3 +311,8 @@ Media Queries (compartilhadas)
         gap: 5px;
     }
 }
+
+/* Estilo para projetos clicáveis - apenas cursor pointer */
+.project-item.clickable-project {
+    cursor: pointer;
+}

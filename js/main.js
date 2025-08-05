@@ -522,4 +522,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializa o carrossel de projetos
     initProjectsCarousel();
+
+    // Services Click Handler - Redireciona para página de serviços
+    const serviceItemsClickable = document.querySelectorAll('.service-item.clickable');
+    
+    serviceItemsClickable.forEach(item => {
+        item.addEventListener('click', function() {
+            // Adiciona cursor pointer visual feedback
+            this.style.cursor = 'pointer';
+            
+            // Redireciona para a página de serviços
+            window.location.href = 'servicos.html';
+        });
+        
+        // Adiciona feedback visual de hover
+        item.addEventListener('mouseenter', function() {
+            this.style.cursor = 'pointer';
+        });
+    });
+
+    // Projects Click Handler - Redireciona para página de projetos
+    // Usa event delegation para funcionar com elementos clonados dinamicamente
+    const projectsTrack = document.querySelector('.projects-track');
+    
+    if (projectsTrack) {
+        projectsTrack.addEventListener('click', function(e) {
+            // Verifica se o clique foi em um project-item clicável ou seus filhos
+            const projectItem = e.target.closest('.project-item.clickable-project');
+            
+            if (projectItem) {
+                // Redireciona para a página de projetos
+                window.location.href = 'projetos.html';
+            }
+        });
+        
+        // Adiciona cursor pointer para feedback visual
+        projectsTrack.addEventListener('mouseover', function(e) {
+            const projectItem = e.target.closest('.project-item.clickable-project');
+            
+            if (projectItem) {
+                projectItem.style.cursor = 'pointer';
+            }
+        });
+    }
 }); 
