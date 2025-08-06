@@ -102,7 +102,6 @@
     }
     
     .service-item {
-        /* Remove hover effects on mobile and optimize for touch */
         cursor: default;
         transition: none;
         will-change: auto;
@@ -111,7 +110,18 @@
     .service-item img {
         transition: filter 0.3s ease;
     }
-    
+
+    .service-item img[alt*="Serviços Executivos"] {
+        object-position: center center;
+    }
+
+    .service-item img[alt*="Fabricação"] {
+        object-position: center 25%;
+    }
+    .service-item img[alt*="Manutenção"] {
+        object-position: center 70%;
+    }
+
     .service-item:hover img {
         filter: grayscale(100%);
     }
@@ -148,16 +158,6 @@
 .service-item.clickable {
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-item.clickable:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.service-item.clickable:active {
-    transform: translateY(0);
-    transition: transform 0.1s ease;
 }
 
 /* Adiciona indicação visual de que é clicável */

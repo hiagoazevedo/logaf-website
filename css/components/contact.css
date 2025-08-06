@@ -24,6 +24,10 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 4rem;
+  /* Garante que não extravase horizontalmente */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-info {
@@ -86,6 +90,30 @@
 }
 
 /* Responsive Design */
+
+/* Tablet/Desktop médio - 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .contact .container {
+    max-width: 900px; /* Reduz de 1200px para 900px em 1024px */
+    padding: 0 2rem; /* Padding adequado */
+  }
+  
+  .contact-content {
+    gap: 2rem; /* Reduz gap para evitar overflow */
+  }
+  
+  .social-icons {
+    gap: 1rem; /* Reduz espaçamento entre ícones */
+  }
+  
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablet - 768px */
 @media (max-width: 768px) {
   .contact {
     padding: 4rem 1rem;
@@ -93,6 +121,7 @@
   
   .contact .container {
     width: 100%;
+    text-align: center; /* Centraliza todo o container */
   }
   
   .contact h2 {
@@ -105,10 +134,16 @@
     flex-direction: column;
     gap: 3rem;
     text-align: center;
+    align-items: center; /* Centraliza os elementos */
   }
   
   .contact-info {
     gap: 2rem;
+    align-items: center; /* Centraliza os itens de contato */
+  }
+  
+  .contact-item {
+    text-align: center; /* Centraliza o texto dos itens */
   }
   
   .contact-item p {
@@ -117,5 +152,35 @@
   
   .social-icons {
     justify-content: center;
+  }
+}
+
+/* Mobile - 425px */
+@media (max-width: 425px) {
+  .contact {
+    padding: 3rem 0.5rem;
+  }
+  
+  .contact .container {
+    padding: 0 1rem;
+  }
+  
+  .contact-content {
+    gap: 2rem;
+  }
+  
+  .social-icons {
+    justify-content: center;
+    gap: 1rem;
+    /* Garante centralização completa */
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
   }
 }

@@ -20,10 +20,16 @@
 .main-services-section {
     background-color: var(--light-gray);
     padding: 4rem 0;
+    /* Previne overflow horizontal */
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .services-container {
     max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
 }
 
 /* Bloco de Serviço */
@@ -31,9 +37,12 @@
     margin-bottom: 3rem;
     /* Scroll Reveal Effect */
     opacity: 0;
-    transform: translate3d(0, 60px, 0);
+    transform: translateY(60px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform, opacity;
+    /* Garante que não extravase horizontalmente */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .service-block:last-child {
@@ -42,12 +51,12 @@
 
 .service-block.reveal {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateY(0);
 }
 
 .service-block.reveal-out {
     opacity: 0;
-    transform: translate3d(0, -30px, 0);
+    transform: translateY(-30px);
     transition: all 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53);
 }
 
@@ -99,14 +108,35 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow: hidden; /* Importante para esconder as partes que excedem */
+    border-radius: 0; /* Remove bordas arredondadas se houver */
 }
 
 .service-image img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    object-position: center center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* Ajustes específicos para cada imagem problemática */
+.service-image img[alt*="Áreas Externas"] {
+    object-position: 0 10px;
+    transform: scale(2.7); /* Zoom para preencher completamente */
+}
+
+.service-image img[alt*="Projetos Corporativos"] {
+    object-position: center center;
+    transform: scale(2.7); /* Zoom maior se necessário */
+}
+
+.service-image img[alt*="Projetos Comerciais"] {
+    object-position: 0 5px;
+    transform: scale(2.7); /* Zoom para preencher completamente */
 }
 
 /* Responsividade Tablet */
@@ -258,6 +288,22 @@
         height: 220px;
         width: 80vw;
         max-width: none;
+    }
+
+    /* Ajustes de posicionamento específicos para mobile */
+    .service-image img[alt*="Áreas Externas"] {
+        object-position: center center; /* Ajuste conforme necessário */
+        transform: scale(1);
+    }
+
+    .service-image img[alt*="Projetos Corporativos"] {
+        object-position: center center; /* Ajuste conforme necessário */
+        transform: scale(1);
+    }
+
+    .service-image img[alt*="Projetos Comerciais"] {
+        object-position: center center; /* Ajuste conforme necessário */
+        transform: scale(1);
     }
 
     .service-block {

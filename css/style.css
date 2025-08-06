@@ -45,6 +45,9 @@
 /* Performance optimizations */
 html {
     scroll-behavior: smooth;
+    /* Previne overflow horizontal */
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -55,20 +58,21 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Previne overflow horizontal */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
-/* GPU acceleration for common elements */
-img {
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-}
+/* Removed GPU acceleration optimizations that were causing layout issues */
 
-/* Optimize transitions globally */
-*,
-*::before,
-*::after {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+/* Garante que todos os containers principais não extravasem */
+.container,
+.nav-container,
+.hero-content,
+.contact-content {
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 body h2 {
