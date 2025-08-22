@@ -67,7 +67,10 @@ body {
 /* Removed GPU acceleration optimizations that were causing layout issues */
 
 /* Garante que todos os containers principais não extravasem */
-.container,
+.about-container,
+.services-container,
+.projects-container,
+.contact-container,
 .nav-container,
 .hero-content,
 .contact-content {
@@ -75,7 +78,16 @@ body {
     box-sizing: border-box;
 }
 
-body h2 {
+.about-container,
+.services-container,
+.projects-container,
+.contact-container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+body h2 {   
     font-size: 30px;
     text-transform: uppercase;
 }

@@ -23,7 +23,7 @@
     min-height: 80vh;
 }
 
-.container {
+.container-services {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -186,7 +186,7 @@
 
 /* Responsividade */
 @media (max-width: 1024px) {
-    .container {
+    .container-services {
         max-width: 100%;
         padding: 0 1.5rem;
     }
@@ -225,7 +225,7 @@
         padding: 2rem 0;
     }
     
-    .container {
+    .container-services {
         max-width: 100%;
         padding: 0 1rem;
         overflow-x: hidden;
@@ -294,7 +294,7 @@
         font-size: 1.25rem;
     }
     
-    .container {
+    .container-services {
         max-width: 100%;
         padding: 0 0.75rem;
         overflow-x: hidden;

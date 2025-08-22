@@ -3,7 +3,7 @@ body:has(.main-content-projects) {
 }
 
 /* LAYOUT BASE */
-.container {
+.container-filters {
     width: 1200px;
     max-width: 100%;
     margin: 0 auto;
@@ -386,7 +386,7 @@ body:has(.main-content-projects) {
 
 @media (max-width: 768px) {
     /* LAYOUT BASE */
-    .container {
+    .container-filters {
         padding: 2rem 1rem 0;
     }
 
@@ -457,7 +457,7 @@ body:has(.main-content-projects) {
 /* MEDIA QUERIES - MOBILE */
 @media (max-width: 480px) {
     /* LAYOUT BASE */
-    .projects-list-minimal .container {
+    .projects-list-minimal .container-filters {
         padding: 1rem 0.5rem 0;
     
     }
