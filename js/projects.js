@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const elements = {
         projectsList: document.getElementById('projects-list'),
         projectDetailView: document.getElementById('project-detail-view'),
+        projectFilters: document.querySelector('.projects-filters-minimal'),
         backBtn: document.getElementById('back-btn'),
         dropdownBtn: document.getElementById('dropdown-btn'),
         dropdownMenu: document.getElementById('dropdown-menu'),
@@ -121,6 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function showProjectsList() {
         elements.projectsList.style.display = 'block';
         elements.projectDetailView.style.display = 'none';
+        // Mostrar a seção de filtros quando voltamos à lista de projetos
+        if (elements.projectFilters) {
+            elements.projectFilters.style.display = 'block';
+        }
         utils.updateURL();
         utils.scrollToTop();
         // Use requestAnimationFrame for better performance
@@ -151,6 +156,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Alternar views
         elements.projectsList.style.display = 'none';
         elements.projectDetailView.style.display = 'block';
+        // Ocultar a seção de filtros quando exibimos um projeto específico
+        if (elements.projectFilters) {
+            elements.projectFilters.style.display = 'none';
+        }
         utils.updateURL(projectId);
         utils.scrollToTop();
     }

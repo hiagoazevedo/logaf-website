@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa o carrossel de projetos
     initProjectsCarousel();
 
-    // Services Click Handler - Redireciona para página de serviços
+    // Services Click Handler - Redireciona para página de serviços específicos
     const serviceItemsClickable = document.querySelectorAll('.service-item.clickable');
     
     serviceItemsClickable.forEach(item => {
@@ -531,8 +531,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Adiciona cursor pointer visual feedback
             this.style.cursor = 'pointer';
             
-            // Redireciona para a página de serviços
-            window.location.href = 'servicos.html';
+            // Obtém o ID do serviço a partir do data-attribute
+            const serviceId = this.getAttribute('data-service');
+            
+            if (serviceId) {
+                // Redireciona para a página do serviço específico
+                window.location.href = `servicos.html?servico=${serviceId}`;
+            } else {
+                // Fallback: redireciona para a página geral de serviços
+                window.location.href = 'servicos.html';
+            }
         });
         
         // Adiciona feedback visual de hover
@@ -541,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Projects Click Handler - Redireciona para página de projetos
+    // Projects Click Handler - Redireciona para página de projetos específicos
     // Usa event delegation para funcionar com elementos clonados dinamicamente
     const projectsTrack = document.querySelector('.projects-track');
     
@@ -551,8 +559,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const projectItem = e.target.closest('.project-item.clickable-project');
             
             if (projectItem) {
-                // Redireciona para a página de projetos
-                window.location.href = 'projetos.html';
+                // Obtém o ID do projeto a partir do data-attribute
+                const projectId = projectItem.getAttribute('data-project-id');
+                
+                if (projectId) {
+                    // Redireciona para a página do projeto específico
+                    window.location.href = `projetos.html?projeto=${projectId}`;
+                } else {
+                    // Fallback: redireciona para a página geral de projetos
+                    window.location.href = 'projetos.html';
+                }
             }
         });
         

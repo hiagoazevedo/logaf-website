@@ -52,72 +52,165 @@
 
     <!-- Seção Principal de Serviços -->
     <section class="main-services-section">
-        <div class="services-container">
-            
-            <!-- Projetos Residenciais -->
-            <div class="service-block">
-                <div class="service-content">
-                    <div class="service-text">
-                        <h3 class="service-title">Projetos<br>Residenciais</h3>
-                        <p class="service-description">Transformamos casas e apartamentos em ambientes únicos, com móveis planejados que aliam funcionalidade, estética e aconchego. Da cozinha à suíte master, cada detalhe é pensado para refletir o estilo de vida dos moradores.</p>
-                    </div>
-                    <div class="service-image">
+        <div class="container">
+            <!-- Serviço em Destaque -->
+            <div class="featured-service">
+                <div class="featured-service-content">
+                    <div class="featured-service-image">
                         <picture>
                             <source srcset="assets/optimized/servicos/SERVICOS-RESIDENCIAIS-SMALL.webp" type="image/webp">
-                            <img src="assets/SERVICOS-RESIDENCIAIS.jpg" alt="Projetos Residenciais" loading="lazy" width="500" height="400">
+                            <img id="featured-image" src="assets/SERVICOS-RESIDENCIAIS.jpg" alt="Projetos Residenciais" loading="eager" width="600" height="400">
                         </picture>
+                    </div>
+                    <div class="featured-service-info">
+                        <h2 id="featured-title">Projetos<br>Residenciais</h2>
+                        <p id="featured-description">Transformamos casas e apartamentos em ambientes únicos, com móveis planejados que aliam funcionalidade, estética e aconchego. Da cozinha à suíte master, cada detalhe é pensado para refletir o estilo de vida dos moradores.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Áreas Externas -->
-            <div class="service-block">
-                <div class="service-content reverse">
-                    <div class="service-text">
-                        <h3 class="service-title">Áreas<br>externas</h3>
-                        <p class="service-description">Criamos soluções resistentes e elegantes para varandas, espaços gourmet, jardins e áreas de lazer — valorizando a integração com a natureza e o conforto no dia a dia.</p>
+            <!-- Script inline para evitar flash visual -->
+            <script>
+                (function() {
+                    // Dados dos serviços
+                    const servicesData = {
+                        'residenciais': {
+                            title: 'Projetos<br>Residenciais',
+                            description: 'Transformamos casas e apartamentos em ambientes únicos, com móveis planejados que aliam funcionalidade, estética e aconchego. Da cozinha à suíte master, cada detalhe é pensado para refletir o estilo de vida dos moradores.',
+                            imageSrc: 'assets/SERVICOS-RESIDENCIAIS.jpg',
+                            imageWebp: 'assets/optimized/servicos/SERVICOS-RESIDENCIAIS-SMALL.webp'
+                        },
+                        'externas': {
+                            title: 'Áreas<br>Externas',
+                            description: 'Criamos soluções resistentes e elegantes para varandas, espaços gourmet, jardins e áreas de lazer — valorizando a integração com a natureza e o conforto no dia a dia.',
+                            imageSrc: 'assets/SERVICOS-EXTERNAS.jpg',
+                            imageWebp: 'assets/optimized/servicos/SERVICOS-EXTERNAS-SMALL.webp'
+                        },
+                        'corporativos': {
+                            title: 'Projetos<br>Corporativos',
+                            description: 'Oferecemos marcenaria inteligente para escritórios, clínicas e ambientes profissionais, sempre com foco em ergonomia, organização e imagem institucional.',
+                            imageSrc: 'assets/SERVICOS-EXECUTIVOS.jpg',
+                            imageWebp: 'assets/optimized/servicos/SERVICOS-EXECUTIVOS-SMALL.webp'
+                        },
+                        'comerciais': {
+                            title: 'Projetos<br>Comerciais',
+                            description: 'Desenvolvemos mobiliário sob medida para lojas, restaurantes, hotéis e outros espaços comerciais, buscando funcionalidade, excelência do cliente e identidade de marca.',
+                            imageSrc: 'assets/SERVICOS-COMERCIAIS.jpg',
+                            imageWebp: 'assets/optimized/servicos/SERVICOS-COMERCIAIS-SMALL.webp'
+                        }
+                    };
+
+                    // Mapeamento de serviços
+                    const serviceMapping = {
+                        'executivo': 'residenciais',
+                        'fabricacao': 'externas', 
+                        'manutencao': 'corporativos',
+                        'marcenaria': 'comerciais'
+                    };
+
+                    // Função para obter parâmetro da URL
+                    function getUrlParameter(name) {
+                        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                        const results = regex.exec(location.search);
+                        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                    }
+
+                    // Verificar serviço específico
+                    const serviceParam = getUrlParameter('servico');
+                    let targetService = 'residenciais';
+                    
+                    if (serviceParam && serviceMapping[serviceParam]) {
+                        targetService = serviceMapping[serviceParam];
+                    }
+
+                    // Se não for residenciais, atualizar IMEDIATAMENTE
+                    if (targetService !== 'residenciais') {
+                        const service = servicesData[targetService];
+                        if (service) {
+                            // Atualizar título
+                            const titleElement = document.getElementById('featured-title');
+                            if (titleElement) {
+                                titleElement.innerHTML = service.title;
+                            }
+
+                            // Atualizar descrição
+                            const descElement = document.getElementById('featured-description');
+                            if (descElement) {
+                                descElement.textContent = service.description;
+                            }
+
+                            // Atualizar imagem
+                            const imageElement = document.getElementById('featured-image');
+                            if (imageElement) {
+                                const picture = imageElement.parentElement;
+                                const source = picture?.querySelector('source');
+                                
+                                if (source) source.srcset = service.imageWebp;
+                                imageElement.src = service.imageSrc;
+                                imageElement.alt = service.title.replace('<br>', ' ');
+                            }
+
+                            // Atualizar estado ativo do carrossel
+                            setTimeout(() => {
+                                const serviceCards = document.querySelectorAll('.service-card');
+                                serviceCards.forEach(card => {
+                                    const cardService = card.getAttribute('data-service');
+                                    if (cardService === targetService) {
+                                        card.classList.add('active');
+                                    } else {
+                                        card.classList.remove('active');
+                                    }
+                                });
+                            }, 0);
+                        }
+                    }
+                })();
+            </script>
+            <!-- Carrossel de Serviços -->
+            <div class="services-carousel">
+                <h3 class="carousel-title">Nossos Serviços</h3>
+                <div class="services-track">
+                    <div class="service-card active" data-service="residenciais">
+                        <div class="service-card-image">
+                            <picture>
+                                <source srcset="assets/optimized/servicos/SERVICOS-RESIDENCIAIS-SMALL.webp" type="image/webp">
+                                <img src="assets/SERVICOS-RESIDENCIAIS.jpg" alt="Projetos Residenciais" loading="lazy" width="300" height="200">
+                            </picture>
+                        </div>
+                        <h4 class="service-card-title">Projetos<br>Residenciais</h4>
                     </div>
-                    <div class="service-image">
-                        <picture>
-                            <source srcset="assets/optimized/servicos/SERVICOS-EXTERNAS-SMALL.webp" type="image/webp">
-                            <img src="assets/SERVICOS-EXTERNAS.jpg" alt="Áreas Externas" loading="lazy" width="500" height="400">
-                        </picture>
+
+                    <div class="service-card" data-service="externas">
+                        <div class="service-card-image">
+                            <picture>
+                                <source srcset="assets/optimized/servicos/SERVICOS-EXTERNAS-SMALL.webp" type="image/webp">
+                                <img src="assets/SERVICOS-EXTERNAS.jpg" alt="Áreas Externas" loading="lazy" width="300" height="200">
+                            </picture>
+                        </div>
+                        <h4 class="service-card-title">Áreas<br>Externas</h4>
+                    </div>
+
+                    <div class="service-card" data-service="corporativos">
+                        <div class="service-card-image">
+                            <picture>
+                                <source srcset="assets/optimized/servicos/SERVICOS-EXECUTIVOS-SMALL.webp" type="image/webp">
+                                <img src="assets/SERVICOS-EXECUTIVOS.jpg" alt="Projetos Corporativos" loading="lazy" width="300" height="200">
+                            </picture>
+                        </div>
+                        <h4 class="service-card-title">Projetos<br>Corporativos</h4>
+                    </div>
+
+                    <div class="service-card" data-service="comerciais">
+                        <div class="service-card-image">
+                            <picture>
+                                <source srcset="assets/optimized/servicos/SERVICOS-COMERCIAIS-SMALL.webp" type="image/webp">
+                                <img src="assets/SERVICOS-COMERCIAIS.jpg" alt="Projetos Comerciais" loading="lazy" width="300" height="200">
+                            </picture>
+                        </div>
+                        <h4 class="service-card-title">Projetos<br>Comerciais</h4>
                     </div>
                 </div>
             </div>
-
-            <!-- Projetos Corporativos -->
-            <div class="service-block">
-                <div class="service-content">
-                    <div class="service-text">
-                        <h3 class="service-title">Projetos<br>Corporativos</h3>
-                        <p class="service-description">Oferecemos marcenaria inteligente para escritórios, clínicas e ambientes profissionais, sempre com foco em ergonomia, organização e imagem institucional.</p>
-                    </div>
-                    <div class="service-image">
-                        <picture>
-                            <source srcset="assets/optimized/servicos/SERVICOS-EXECUTIVOS-SMALL.webp" type="image/webp">
-                            <img src="assets/SERVICOS-EXECUTIVO.jpg" alt="Projetos Corporativos" loading="lazy" width="500" height="400">
-                        </picture>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projetos Comerciais -->
-            <div class="service-block">
-                <div class="service-content reverse">
-                    <div class="service-text">
-                        <h3 class="service-title">Projetos<br>Comerciais</h3>
-                        <p class="service-description">Desenvolvemos mobiliário sob medida para lojas, restaurantes, hotéis e outros espaços comerciais, buscando funcionalidade, excelência do cliente e identidade de marca.</p>
-                    </div>
-                    <div class="service-image">
-                        <picture>
-                            <source srcset="assets/optimized/servicos/SERVICOS-COMERCIAIS-SMALL.webp" type="image/webp">
-                            <img src="assets/SERVICOS-COMERCIAIS.jpg" alt="Projetos Comerciais" loading="lazy" width="500" height="400">
-                        </picture>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 

@@ -187,14 +187,21 @@ Media Queries (compartilhadas)
     overflow: hidden;
 }
 
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 2rem;
+}
+
 .projects-title {
     font-family: var(--font-tenor-sans);
     font-size: 1.875rem;
     font-weight: 400;
     color: var(--white);
     text-align: left;
-    margin-bottom: 30px;
-    padding-left: 2rem;
+    margin: 0;
 }
 
 .projects-carousel {
@@ -235,7 +242,6 @@ Media Queries (compartilhadas)
 .projects-link-container {
     display: flex;
     justify-content: flex-end;
-    padding-right: 2rem;
 }
 
 .projects-link {
@@ -272,10 +278,16 @@ Media Queries (compartilhadas)
         padding: 50px 0 30px;
     }
     
+    .projects-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        padding: 0 1rem;
+        margin-bottom: 20px;
+    }
+    
     .projects-title {
         font-size: 1.5rem;
-        margin: 40px 0 20px;
-        padding-left: 1rem;
         text-align: center;
     }
     
@@ -289,7 +301,6 @@ Media Queries (compartilhadas)
     }
     
     .projects-link-container {
-        padding-right: 1rem;
         justify-content: center;
     }
 }

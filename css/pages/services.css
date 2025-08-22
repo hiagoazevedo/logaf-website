@@ -20,222 +20,272 @@
 .main-services-section {
     background-color: var(--light-gray);
     padding: 4rem 0;
-    /* Previne overflow horizontal */
-    overflow-x: hidden;
-    width: 100%;
+    min-height: 80vh;
 }
 
-.services-container {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-/* Bloco de Serviço */
-.service-block {
-    margin-bottom: 3rem;
-    /* Scroll Reveal Effect */
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* Garante que não extravase horizontalmente */
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+/* Serviço em Destaque */
+.featured-service {
+    margin-bottom: 4rem;
 }
 
-.service-block:last-child {
-    margin-bottom: 0;
-}
-
-.service-block.reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.service-block.reveal-out {
-    opacity: 0;
-    transform: translateY(-30px);
-    transition: all 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-}
-
-.service-content {
+.featured-service-content {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
     gap: 4rem;
-    margin-bottom: 2rem;
-}
-
-.service-content.reverse {
-    flex-direction: row-reverse;
-}
-
-/* Texto do Serviço */
-.service-text {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex: 2;
-    max-width: 900px;
+    background: var(--white);
+    border-radius: 5px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.service-title {
+.featured-service-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.featured-service-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.featured-service-info {
+    flex: 1;
+    padding-left: 2rem;
+}
+
+.featured-service-info h2 {
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     font-family: var(--font-tenor-sans);
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
 }
 
-.service-description {
+.featured-service-info p {
     color: var(--tertiary-color);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.7;
     font-family: var(--font-inter);
     text-align: justify;
-    max-width: 450px;
 }
 
-/* Imagem do Serviço */
-.service-image {
-    flex: 1;
-    max-width: 300px;
-    min-width: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow: hidden; /* Importante para esconder as partes que excedem */
-    border-radius: 0; /* Remove bordas arredondadas se houver */
+/* Carrossel de Serviços */
+.services-carousel {
+    background: var(--white);
+    border-radius: 5px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.service-image img {
+.carousel-title {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--font-tenor-sans);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.services-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.service-card {
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--light-gray);
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-card.active {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(var(--primary-color-rgb), 0.3);
+    background: var(--white);
+}
+
+.service-card.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-color);
+}
+
+.service-card-image {
     width: 100%;
-    height: 200px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.service-card-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: center center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 100%;
-    min-height: 100%;
+    transition: transform 0.3s ease;
 }
 
-/* Ajustes específicos para cada imagem problemática */
-.service-image img[alt*="Áreas Externas"] {
-    object-position: 0 10px;
-    transform: scale(2.7); /* Zoom para preencher completamente */
+.service-card:hover .service-card-image img {
+    transform: scale(1.05);
 }
 
-.service-image img[alt*="Projetos Corporativos"] {
-    object-position: center center;
-    transform: scale(2.7); /* Zoom maior se necessário */
+.service-card-title {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-tenor-sans);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+    line-height: 1.3;
 }
 
-.service-image img[alt*="Projetos Comerciais"] {
-    object-position: 0 5px;
-    transform: scale(2.7); /* Zoom para preencher completamente */
+.service-card.active .service-card-title {
+    color: var(--primary-color);
 }
 
-/* Responsividade Tablet */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .services-container {
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.featured-service-content {
+    animation: fadeIn 0.6s ease;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .container {
         max-width: 100%;
+        padding: 0 1.5rem;
     }
-
-    .service-content {
-        justify-content: flex-end;
-        align-items: center;
+    
+    .featured-service-content {
         gap: 3rem;
+        padding: 2.5rem;
     }
-
-    .service-text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex: 2;
-        max-width: 700px;
-        padding: 0 1rem;
+    
+    .featured-service-info h2 {
+        font-size: 2.2rem;
     }
-
-    .service-description {
-        max-width: 350px;
+    
+    .services-track {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
-
-    .service-image {
-        flex: 1;
-        max-width: 280px;
-        min-width: 220px;
-    }
-
-    .service-image img {
-        height: 180px;
+    
+    .services-carousel {
+        padding: 2rem 1rem;
+        margin: 0 -1rem;
     }
 }
 
-@media (max-width: 768px) and (min-width: 481px) {
+@media (max-width: 768px) {
     .page-title-banner {
         padding: 6rem 1rem 1.5rem;
     }
-
+    
     .page-title-banner h1 {
         font-size: 1.5rem;
         text-align: center;
     }
-
+    
     .main-services-section {
         padding: 2rem 0;
     }
-
-    .services-container {
+    
+    .container {
+        max-width: 100%;
+        padding: 0 1rem;
+        overflow-x: hidden;
+    }
+    
+    .featured-service-content {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .featured-service-image {
         max-width: 100%;
     }
-
-    .service-content {
-        justify-content: flex-end;
-        align-items: center;
-        gap: 2.5rem;
+    
+    .featured-service-image img {
+        height: 250px;
     }
-
-    .service-content.reverse {
-        flex-direction: row-reverse;
+    
+    .featured-service-info {
+        padding-left: 0;
+        text-align: center;
     }
-
-    .service-text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex: 2;
-        max-width: 500px;
-        padding: 0 1rem;
+    
+    .featured-service-info h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
-
-    .service-title {
-        font-size: 1.5rem;
-        text-align: left;
-    }
-
-    .service-description {
+    
+    .featured-service-info p {
+        font-size: 1rem;
         text-align: justify;
-        font-size: 0.8rem;
-        max-width: 240px;
     }
-
-    .service-image {
-        flex: 1;
-        max-width: 250px;
-        min-width: 200px;
-        justify-content: center;
+    
+    .services-carousel {
+        padding: 2rem;
     }
-
-    .service-image img {
-        height: 160px;
+    
+    .carousel-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
     }
-
-    .service-block {
-        margin-bottom: 2rem;
+    
+    .services-track {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .services-carousel {
+        padding: 2rem 0.5rem;
+        margin: 0 -0.5rem;
+    }
+    
+    .service-card-image {
+        height: 120px;
+    }
+    
+    .service-card-title {
+        font-size: 0.9rem;
+        padding: 0.8rem;
     }
 }
 
@@ -243,76 +293,48 @@
     .page-title-banner h1 {
         font-size: 1.25rem;
     }
-
-    .services-container {
-        padding: 0 0.5rem;
-    }
-
-    .service-content,
-    .service-content.reverse {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2.5rem;
-        text-align: center;
-    }
-
-    .service-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    
+    .container {
         max-width: 100%;
+        padding: 0 0.75rem;
+        overflow-x: hidden;
     }
-
-    .service-title {
+    
+    .featured-service-content {
+        padding: 1.5rem;
+    }
+    
+    .featured-service-info h2 {
         font-size: 1.5rem;
-        margin-bottom: 0.75rem;
-        text-align: center;
     }
-
-    .service-description {
+    
+    .services-carousel {
+        padding: 1.5rem 0.25rem;
+        margin: 0 -0.25rem;
+    }
+    
+    .services-track {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 100%;
+    }
+    
+    .service-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .service-card-image {
+        width: 80px;
+        height: 60px;
+        flex-shrink: 0;
+    }
+    
+    .service-card-title {
         font-size: 0.85rem;
-        max-width: 100%;
-        line-height: 1.5;
-        text-align: justify;
+        padding: 0;
+        text-align: left;
     }
-
-    .service-image {
-        max-width: 100%;
-        min-width: auto;
-        justify-content: center;
-    }
-
-    .service-image img {
-        height: 220px;
-        width: 80vw;
-        max-width: none;
-    }
-
-    /* Ajustes de posicionamento específicos para mobile */
-    .service-image img[alt*="Áreas Externas"] {
-        object-position: center center; /* Ajuste conforme necessário */
-        transform: scale(1);
-    }
-
-    .service-image img[alt*="Projetos Corporativos"] {
-        object-position: center center; /* Ajuste conforme necessário */
-        transform: scale(1);
-    }
-
-    .service-image img[alt*="Projetos Comerciais"] {
-        object-position: center center; /* Ajuste conforme necessário */
-        transform: scale(1);
-    }
-
-    .service-block {
-        margin-bottom: 1.5rem;
-        /* Scroll reveal ajustado para mobile */
-        transform: translateY(40px);
-    }
-
-    .service-block.reveal-out {
-        transform: translateY(-20px);
-    }
-} 
+}
