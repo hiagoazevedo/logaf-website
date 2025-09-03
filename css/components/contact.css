@@ -1,7 +1,9 @@
 /* Contact Section */
 .contact {
+  height: 80vh;
   padding: 6rem 2rem;
   background-color: var(--light-gray);
+  align-content: center;
 }
 
 .contact .container {
@@ -116,6 +118,7 @@
 /* Tablet - 768px */
 @media (max-width: 768px) {
   .contact {
+    height: 90vh;
     padding: 4rem 1rem;
   }
   

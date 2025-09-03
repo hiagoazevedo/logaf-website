@@ -307,7 +307,7 @@ Media Queries (compartilhadas)
 
 @media (max-width: 480px) {
     .projects{
-      height: 105vh;
+      height: 95vh;
     }
 
     .projects-carousel {

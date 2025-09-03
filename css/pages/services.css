@@ -39,9 +39,7 @@
     gap: 4rem;
     align-items: center;
     background: var(--white);
-    border-radius: 5px;
     padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -84,9 +82,7 @@
 /* Carrossel de Serviços */
 .services-carousel {
     background: var(--white);
-    border-radius: 5px;
     padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-title {
