@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Rio de Janeiro, RJ',
             area: '400 m²',
             year: '2024',
-            description: 'Projeto residencial desenvolvido pela arquiteta Duda Porto, apresentando soluções inovadoras em marcenaria e design de interiores. O projeto combina funcionalidade e estética, criando ambientes únicos e acolhedores com acabamentos de alta qualidade.',
+            description: 'Projeto residencial desenvolvido pelo arquiteto Duda Porto, apresentando soluções inovadoras em marcenaria e design de interiores. O projeto combina funcionalidade e estética, criando ambientes únicos e acolhedores com acabamentos de alta qualidade.',
             images: [
                 { src: 'assets/optimized/projetos-temp/casa-o-bom/01.webp', alt: 'Vista geral' },
                 { src: 'assets/optimized/projetos-temp/casa-o-bom/02.webp', alt: 'Sala de estar' },
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Rio de Janeiro, RJ',
             area: '500 m²',
             year: '2024',
-            description: 'Projeto desenvolvido em parceria entre as arquitetas Paola Ribeiro e Duda Porto. Esta residência apresenta um conceito moderno e sofisticado, com móveis sob medida que maximizam o aproveitamento dos espaços e proporcionam conforto e elegância aos ambientes.',
+            description: 'Projeto desenvolvido em parceria entre os arquitetos Paola Ribeiro e Duda Porto. Esta residência apresenta um conceito moderno e sofisticado, com móveis sob medida que maximizam o aproveitamento dos espaços e proporcionam conforto e elegância aos ambientes.',
             images: [
                 { src: 'assets/optimized/projetos-temp/casa-renato-augusto/01.webp', alt: 'Fachada' },
                 { src: 'assets/optimized/projetos-temp/casa-renato-augusto/02.webp', alt: 'Sala de estar' },
